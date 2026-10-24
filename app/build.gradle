@@ -5,7 +5,7 @@ android {
  namespace 'com.littlemakers.village.nativeapp'
  compileSdk 36
  buildToolsVersion '36.0.0'
- defaultConfig { applicationId 'com.littlemakers.village'; minSdk 24; targetSdk 36; versionCode 22; versionName '2.5.0-native' }
+ defaultConfig { applicationId 'com.littlemakers.village'; minSdk 24; targetSdk 36; versionCode 23; versionName '2.6.0-native' }
  compileOptions { sourceCompatibility JavaVersion.VERSION_1_8; targetCompatibility JavaVersion.VERSION_1_8 }
  signingConfigs {
   if (signingReady) {

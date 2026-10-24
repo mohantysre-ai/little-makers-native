@@ -1,0 +1,32 @@
+{
+  "version": "2.6.0-native",
+  "versionCode": 23,
+  "build": "SDK36 Java/resources/DEX, APK v2/v3 signatures verified",
+  "automated": [
+    "all 1200 levels solvable, 10814 rule/state checks",
+    "400 legacy save fixtures",
+    "2437 platform/schema/palette checks",
+    "2736 picture/story asset checks",
+    "village motion and crop tests",
+    "shape matching, wrong drops, snapping, reset, duplicate-match rejection"
+  ],
+  "device": {
+    "api": 24,
+    "type": "software emulator",
+    "observed": [
+      "Opening \u2192 Playroom \u2192 3D shape workshop",
+      "all three pieces placed successfully using touch drags",
+      "completion prompt shown",
+      "Playroom \u2192 native 3D fish pond",
+      "fish follows touch to upper right; before/after captures"
+    ]
+  },
+  "notCertified": [
+    "physical-device 60fps",
+    "wider GPU compatibility",
+    "all games converted to 3D",
+    "photorealistic rendering",
+    "full accessibility acceptance"
+  ],
+  "apkSha256": "56c69b878553995d165f247223084968904e3858b6d96427c00e5c59d6636aa0"
+}

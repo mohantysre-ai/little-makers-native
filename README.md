@@ -1,3 +1,7 @@
+# Native 3D gameplay — 2.6.0
+
+Shape Space and Fish Pond now use real mesh gameplay scenes. See [GAMEPLAY-3D-2.6.0.md](GAMEPLAY-3D-2.6.0.md) for scope and verification.
+
 # Opening, logo and environment — 2.5.0
 
 See [BRANDING-2.5.0.md](BRANDING-2.5.0.md) for the launcher redesign, original artwork, verification and remaining limits.
