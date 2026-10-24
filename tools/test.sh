@@ -19,3 +19,6 @@ python3 "$project_root/tests/check_web_port.py"
 python3 "$project_root/tests/check_branding.py"
 "$java_root/bin/javac" -d "$project_root/build/tests" "$project_root/app/src/main/java/com/littlemakers/village/nativeapp/ShapePlayState.java" "$project_root/tests/ShapePlayTest.java"
 "$java_root/bin/java" -cp "$project_root/build/tests" com.littlemakers.village.nativeapp.ShapePlayTest
+"$java_root/bin/javac" -d "$project_root/build/tests" "$project_root/app/src/main/java/com/littlemakers/village/nativeapp/SceneFrame.java" "$project_root/app/src/main/java/com/littlemakers/village/nativeapp/StoryModels.java" "$project_root/tests/SceneFrameTest.java"
+"$java_root/bin/java" -cp "$project_root/build/tests" com.littlemakers.village.nativeapp.SceneFrameTest
+python3 "$project_root/tests/check_3d_coverage.py"

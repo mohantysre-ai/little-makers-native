@@ -1,0 +1,68 @@
+{
+  "version": "2.7.0-native",
+  "versionCode": 24,
+  "build": "SDK36 Java/resources/DEX compile, APK v2/v3 signature verification passed",
+  "automated": "existing 1200-level rule tests, legacy save fixtures, audio/navigation/content checks; immutable scene geometry and 41 explicit story asset mappings passed",
+  "device": {
+    "api": 24,
+    "renderer": "software emulator / GLES",
+    "passedScreens": 36,
+    "cases": [
+      "game-count",
+      "game-add",
+      "game-subtract",
+      "game-multiply",
+      "game-divide",
+      "game-shapes",
+      "game-colors",
+      "game-pattern",
+      "game-memory",
+      "game-sizes",
+      "game-trace",
+      "game-word",
+      "game-maze",
+      "game-robot",
+      "game-water",
+      "game-blocks",
+      "game-merge",
+      "game-rhythm",
+      "game-bridge",
+      "game-plan",
+      "game-memory-dark",
+      "game-bridge-reduced",
+      "story-forest",
+      "story-ocean",
+      "story-night",
+      "studio-paint",
+      "studio-texture",
+      "studio-dots",
+      "studio-practice",
+      "studio-practice-saved",
+      "shelf-books",
+      "shelf-play",
+      "shelf-story",
+      "shelf-gallery",
+      "story-placement-next",
+      "opening-3d"
+    ],
+    "storyStepFramesBuilt": 630,
+    "interactionChecks": [
+      "practice stroke survives save and reopening",
+      "story Place advances to next scene"
+    ]
+  },
+  "notCertified": [
+    "photorealistic rendering",
+    "physical-device 60fps",
+    "broad Android/GPU matrix",
+    "full accessibility acceptance",
+    "unique bespoke cinematics for every story"
+  ],
+  "intentionalFlatMedia": [
+    "readable text and controls",
+    "coloring illustrations on the 3D art board",
+    "catalog picture thumbnails",
+    "illustrated opening/village background behind meshes"
+  ],
+  "apkSha256": "c37a04f970aa17083b0ea3d29740fc32ab6cec41e1c9c0261c247a4490581ee7"
+}

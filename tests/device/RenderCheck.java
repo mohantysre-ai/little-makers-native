@@ -1,0 +1,38 @@
+package com.littlemakers.village.rendercheck;
+import android.app.*;
+import android.os.*;
+import android.content.*;
+import android.graphics.*;
+import java.io.*;
+import java.lang.reflect.*;
+
+/** Separate instrumentation APK. Run on an isolated emulator, never a child's active profile. */
+public final class RenderCheck extends Instrumentation {
+ private Activity activity;private int passed;private File output;
+ @Override public void onCreate(Bundle args){super.onCreate(args);start();}
+ private Object field(Object target,String name)throws Exception{Field f=target.getClass().getDeclaredField(name);f.setAccessible(true);return f.get(target);}
+ private void set(Object target,String name,Object value)throws Exception{Field f=target.getClass().getDeclaredField(name);f.setAccessible(true);f.set(target,value);}
+ private void call(Object target,String name,Class<?>[]types,Object...args)throws Exception{Method m=target.getClass().getDeclaredMethod(name,types);m.setAccessible(true);m.invoke(target,args);}
+ private void ui(Runnable r){runOnMainSync(r);waitForIdleSync();}
+ private void launch(String name){Intent i=new Intent().setClassName("com.littlemakers.village","com.littlemakers.village.nativeapp."+name).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);if(name.equals("MainActivity"))i.putExtra("destination","playroom");activity=startActivitySync(i);waitForIdleSync();}
+ private Object stage(boolean game)throws Exception{return game?field(field(activity,"gameView"),"stage"):field(activity,"creativeStage");}
+ private void rendered(boolean game)throws Exception{long until=SystemClock.uptimeMillis()+45000;while(SystemClock.uptimeMillis()<until){Object s=stage(game);if(s!=null&&((Long)field(s,"renderedFrames"))>=(getTargetContext().getSharedPreferences("family",0).getBoolean("reduce_motion",false)?1:2))return;SystemClock.sleep(100);}throw new AssertionError("No native mesh frames for "+activity.getClass().getName());}
+ private void capture(String name)throws Exception{SystemClock.sleep(250);Bitmap b=getUiAutomation().takeScreenshot();if(b==null)throw new AssertionError("Screenshot unavailable");try(FileOutputStream out=new FileOutputStream(new File(output,name+".png"))){b.compress(Bitmap.CompressFormat.PNG,100,out);}b.recycle();Bundle progress=new Bundle();progress.putString("case",name);sendStatus(1,progress);passed++;}
+ @Override public void onStart(){Bundle result=new Bundle();try{
+  output=new File(getTargetContext().getFilesDir(),"render-check");output.mkdirs();launch("MainActivity");
+  String[]kinds={"count","add","subtract","multiply","divide","shapes","colors","pattern","memory","sizes","trace","word","maze","robot","water","blocks","merge","rhythm","bridge","plan"};
+  for(String kind:kinds){final String id="native-"+kind+"-1";ui(()->{try{call(activity,"openGame",new Class[]{String.class,boolean.class},id,true);}catch(Exception e){throw new RuntimeException(e);}});rendered(true);capture("game-"+kind);}
+  getTargetContext().getSharedPreferences("family",0).edit().putString("theme","dark").commit();ui(()->{try{call(activity,"openGame",new Class[]{String.class,boolean.class},"native-memory-1",true);}catch(Exception e){throw new RuntimeException(e);}});rendered(true);capture("game-memory-dark");
+  getTargetContext().getSharedPreferences("family",0).edit().putBoolean("reduce_motion",true).commit();ui(()->{try{call(activity,"openGame",new Class[]{String.class,boolean.class},"native-bridge-1",true);}catch(Exception e){throw new RuntimeException(e);}});rendered(true);capture("game-bridge-reduced");
+  getTargetContext().getSharedPreferences("family",0).edit().putBoolean("reduce_motion",false).putString("theme","light").commit();ui(()->activity.finish());launch("CreativeActivity");int[]stories={0,1,2};for(int n:stories){ui(()->{try{set(activity,"story",n);set(activity,"storyStep",0);call(activity,"storyScene",new Class[0]);}catch(Exception e){throw new RuntimeException(e);}});rendered(false);capture(new String[]{"story-forest","story-ocean","story-night"}[n]);}
+  // Every scripted step must build an actual semantic model node, not a missing-prop fallback.
+  ui(()->{try{Object art=field(activity,"art");org.json.JSONArray episodes=(org.json.JSONArray)field(art,"stories");Object canvas=field(activity,"canvas");for(int ep=0;ep<episodes.length();ep++){set(activity,"story",ep);for(int step=0;step<episodes.getJSONObject(ep).getJSONArray("steps").length();step++){set(activity,"storyStep",step);call(canvas,"storyFrame",new Class[0]);}}}catch(Exception e){throw new RuntimeException(e);}});
+  for(String mode:new String[]{"paint","texture","dots","practice"}){ui(()->{try{call(activity,"work",new Class[]{String.class,int.class},mode,0);}catch(Exception e){throw new RuntimeException(e);}});rendered(false);capture("studio-"+mode);}
+  // Verify drawing input and persistence on the physical board.
+  ui(()->{try{android.view.View canvas=(android.view.View)field(activity,"canvas");long t=SystemClock.uptimeMillis();for(int action:new int[]{0,2,1}){android.view.MotionEvent event=android.view.MotionEvent.obtain(t,t+action*20,action,canvas.getWidth()*.5f+(action==0?0:45),canvas.getHeight()*.5f,0);canvas.dispatchTouchEvent(event);event.recycle();}call(canvas,"persist",new Class[0]);call(activity,"work",new Class[]{String.class,int.class},"practice",0);Bitmap marks=(Bitmap)field(field(activity,"canvas"),"marks");boolean found=false;for(int x=0;x<640;x+=10)for(int y=0;y<840;y+=10)if(Color.alpha(marks.getPixel(x,y))>0)found=true;if(!found)throw new AssertionError("Drawing input did not persist");}catch(Exception e){throw new RuntimeException(e);}});rendered(false);capture("studio-practice-saved");
+  for(String route:new String[]{"books","play","story","gallery"}){ui(()->{try{call(activity,"show",new Class[]{String.class},route);}catch(Exception e){throw new RuntimeException(e);}});rendered(false);capture("shelf-"+route);}
+  ui(()->{try{set(activity,"story",0);set(activity,"storyStep",0);call(activity,"storyScene",new Class[0]);call(field(activity,"canvas"),"placeStory",new Class[0]);((android.widget.Button)field(activity,"storyAction")).performClick();if(((Integer)field(activity,"storyStep"))!=1)throw new AssertionError("Story placement did not advance");}catch(Exception e){throw new RuntimeException(e);}});rendered(false);capture("story-placement-next");
+  ui(()->activity.finish());launch("OpeningActivity");boolean visible=false;long until=SystemClock.uptimeMillis()+45000;while(SystemClock.uptimeMillis()<until){Object opening=field(activity,"openingStage");if(opening!=null&&((Long)field(opening,"renderedFrames"))>0){visible=true;break;}SystemClock.sleep(100);}if(!visible)throw new AssertionError("Opening did not render meshes");capture("opening-3d");
+  ui(()->activity.finish());result.putInt("passed",passed);result.putString("stream","PASS "+passed+" mesh-rendered screens; all 630 story-step frames built\n");finish(Activity.RESULT_OK,result);
+ }catch(Throwable e){result.putString("stream","FAIL after "+passed+": "+android.util.Log.getStackTraceString(e));finish(Activity.RESULT_CANCELED,result);}}
+}

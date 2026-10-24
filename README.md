@@ -1,3 +1,7 @@
+# App-wide 3D rendering — 2.7.0
+
+See [THREE-D-2.7.0.md](THREE-D-2.7.0.md) for all 20 mini-game types, 210 story scripts, physical art boards, real coverage and remaining visual limits.
+
 # Native 3D gameplay — 2.6.0
 
 Shape Space and Fish Pond now use real mesh gameplay scenes. See [GAMEPLAY-3D-2.6.0.md](GAMEPLAY-3D-2.6.0.md) for scope and verification.
