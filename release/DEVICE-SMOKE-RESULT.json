@@ -1,0 +1,12 @@
+{
+  "scope": "Basic native UI smoke test on isolated Android 7/API 24 emulator",
+  "app_version": "2.1.1-native",
+  "install": "PASS",
+  "launch": "PASS",
+  "catalog": "Count section opened and Play 6 reached",
+  "scroll": "Gameplay view scrolled to show answer buttons",
+  "accessibility_nodes": "Six Count item nodes and three Answer nodes exposed with screen bounds",
+  "win_status": "You explored it! +1 star and +7 coins.",
+  "dashboard_after_win": "1 stars   7 coins; 1 / 1200 games explored",
+  "limitations": "Only one activity exercised by touch; no physical-device, Android 16, broad TalkBack, audio playback or performance acceptance."
+}

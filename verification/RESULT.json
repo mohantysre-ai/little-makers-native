@@ -1,0 +1,35 @@
+{
+  "version": "2.3.0-native",
+  "versionCode": 20,
+  "minSdk": 24,
+  "targetSdk": 36,
+  "automated": {
+    "existingRuleStateChecks": 10814,
+    "existingPlatformChecks": 2437,
+    "legacySaveFixtures": 400,
+    "assetAndStoryChecks": 2736,
+    "catalogPictures": 1053,
+    "catalogEpisodes": 210
+  },
+  "device": "Android API 24 software emulator",
+  "exercised": [
+    "native launch",
+    "village navigation",
+    "picture browsing",
+    "brush strokes",
+    "save and show creation",
+    "GLES clay render",
+    "three story placements and ending choices",
+    "parent PIN setup",
+    "parent dark-theme switch"
+  ],
+  "notCertified": [
+    "full web parity",
+    "all episodes played end to end",
+    "all Android versions",
+    "physical-device performance",
+    "full accessibility",
+    "Play approval"
+  ],
+  "apkSha256": "8c336a9245d2efcbb007236f9c01b4bc1b61e278abc6d4948044d5cf7786e90c"
+}

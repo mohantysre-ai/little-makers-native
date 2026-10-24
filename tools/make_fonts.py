@@ -1,0 +1,74 @@
+"""Original Little Makers pixel-outline fonts; no imported glyph assets."""
+from pathlib import Path
+from fontTools.fontBuilder import FontBuilder
+from fontTools.pens.ttGlyphPen import TTGlyphPen
+patterns = '''A:01110/10001/10001/11111/10001/10001/10001
+B:11110/10001/10001/11110/10001/10001/11110
+C:01111/10000/10000/10000/10000/10000/01111
+D:11110/10001/10001/10001/10001/10001/11110
+E:11111/10000/10000/11110/10000/10000/11111
+F:11111/10000/10000/11110/10000/10000/10000
+G:01111/10000/10000/10111/10001/10001/01110
+H:10001/10001/10001/11111/10001/10001/10001
+I:11111/00100/00100/00100/00100/00100/11111
+J:00111/00010/00010/00010/10010/10010/01100
+K:10001/10010/10100/11000/10100/10010/10001
+L:10000/10000/10000/10000/10000/10000/11111
+M:10001/11011/10101/10101/10001/10001/10001
+N:10001/11001/10101/10011/10001/10001/10001
+O:01110/10001/10001/10001/10001/10001/01110
+P:11110/10001/10001/11110/10000/10000/10000
+Q:01110/10001/10001/10001/10101/10010/01101
+R:11110/10001/10001/11110/10100/10010/10001
+S:01111/10000/10000/01110/00001/00001/11110
+T:11111/00100/00100/00100/00100/00100/00100
+U:10001/10001/10001/10001/10001/10001/01110
+V:10001/10001/10001/10001/10001/01010/00100
+W:10001/10001/10001/10101/10101/11011/10001
+X:10001/10001/01010/00100/01010/10001/10001
+Y:10001/10001/01010/00100/00100/00100/00100
+Z:11111/00001/00010/00100/01000/10000/11111
+0:01110/10001/10011/10101/11001/10001/01110
+1:00100/01100/00100/00100/00100/00100/01110
+2:01110/10001/00001/00010/00100/01000/11111
+3:11110/00001/00001/01110/00001/00001/11110
+4:00010/00110/01010/10010/11111/00010/00010
+5:11111/10000/10000/11110/00001/00001/11110
+6:01110/10000/10000/11110/10001/10001/01110
+7:11111/00001/00010/00100/01000/01000/01000
+8:01110/10001/10001/01110/10001/10001/01110
+9:01110/10001/10001/01111/00001/00001/01110
+?:01110/10001/00001/00010/00100/00000/00100
+!:00100/00100/00100/00100/00100/00000/00100
+.:00000/00000/00000/00000/00000/00000/00100
+,:00000/00000/00000/00000/00000/00100/01000
+-:00000/00000/00000/11111/00000/00000/00000
++:00000/00100/00100/11111/00100/00100/00000
+=:00000/00000/11111/00000/11111/00000/00000
+/:00001/00001/00010/00100/01000/10000/10000
+#:01010/11111/01010/01010/11111/01010/00000
+*:00000/10101/01110/11111/01110/10101/00000
+(:00010/00100/01000/01000/01000/00100/00010
+):01000/00100/00010/00010/00010/00100/01000'''
+grid=dict(line.split(':',1) for line in patterns.splitlines())
+grid[':']='00000/00100/00000/00000/00100/00000/00000'
+grid[' ']='00000/'*6+'00000'
+for name,gap in [('makers_text',7),('makers_display',0)]:
+    fb=FontBuilder(1000,isTTF=True); order=['.notdef']+[f'g{ord(c)}' for c in grid]; fb.setupGlyphOrder(order)
+    glyphs={};metrics={}
+    for ch,pattern in [('?',grid['?'])]+list(grid.items()):
+        gn='.notdef' if len(glyphs)==0 else f'g{ord(ch)}'; pen=TTGlyphPen(None)
+        for y,row in enumerate(pattern.split('/')):
+            for x,v in enumerate(row):
+                if v=='1':
+                    l=40+x*110+gap;b=180+(6-y)*110+gap;r=l+110-gap*2;t=b+110-gap*2
+                    pen.moveTo((l,b));pen.lineTo((r,b));pen.lineTo((r,t));pen.lineTo((l,t));pen.closePath()
+        glyphs[gn]=pen.glyph();metrics[gn]=(650,40)
+    fb.setupGlyf(glyphs);fb.setupHorizontalMetrics(metrics);fb.setupHorizontalHeader(ascent=1000,descent=-220)
+    cmap={ord(c):f'g{ord(c)}' for c in grid}
+    for c in 'abcdefghijklmnopqrstuvwxyz':cmap[ord(c)]=f'g{ord(c.upper())}'
+    cmap[0x2019]=cmap[ord(',')];cmap[0x2013]=cmap[ord('-')]
+    fb.setupCharacterMap(cmap);fb.setupNameTable({'familyName':name.replace('_',' ').title(),'styleName':'Regular','uniqueFontIdentifier':name+'-original-1','fullName':name.replace('_',' ').title(),'psName':name.replace('_','-')})
+    fb.setupOS2(sTypoAscender=1000,sTypoDescender=-220,usWinAscent=1000,usWinDescent=220);fb.setupPost();fb.setupMaxp()
+    fb.save(Path(__file__).resolve().parents[1]/'app/src/main/res/font'/f'{name}.ttf')
+print('Generated two original ASCII geometric fonts (lowercase uses uppercase forms).')

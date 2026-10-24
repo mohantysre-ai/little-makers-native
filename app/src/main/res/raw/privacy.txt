@@ -1,0 +1,44 @@
+DEVELOPMENT BUILD - PUBLISHER DETAILS PENDING
+Do not submit this build to Google Play.
+
+PRIVACY POLICY - LITTLE MAKERS
+Effective date: 2026-10-24
+App package: com.littlemakers.village
+Publisher: [NOT CONFIGURED - DEVELOPMENT BUILD]
+Parent/privacy contact: [NOT CONFIGURED - DEVELOPMENT BUILD]
+Public policy copy: [NOT CONFIGURED - DEVELOPMENT BUILD]
+
+SCOPE
+This policy describes the native Little Makers Android edition, version 2.3.0. It is intended for children aged 4 to 8 and their parents. It does not describe the separate browser or older web-based Android edition.
+
+DATA STORED ON THIS DEVICE
+Little Makers stores drawing drafts, kept artwork, story scene progress, clay shapes, game states, completed activity IDs and completion times, earned stars and coins, cosmetic purchases and equipped items, and preferences for theme, sound and reduced motion. If an adult sets a parent PIN, the app stores a random salt and a hash of that PIN, not the PIN itself. These records support local gameplay, rewards and parent settings.
+
+The app does not ask for a child's name, date of birth, email address, telephone number, photographs or account. It does not record a child's voice. It has no profile upload, chat, public gallery or social sharing.
+
+NETWORK, TRACKING AND PERMISSIONS
+The native app has no Internet permission or network service. It does not send the above records to the publisher or other services. It contains no advertisements, analytics, crash-reporting, attribution or advertising SDK. It does not request camera, microphone, location, contacts, device advertising identifiers, or access to your files outside the app's private storage.
+
+Sound is synthesized on the device; no online voice service is used. The 1,200 mini-game levels, imported web picture catalog and story scripts, licensed artwork, programmatic graphics and sound are bundled in the app. The app does not launch third-party games, websites, web views or payment services.
+
+HOW DATA IS USED AND SHARED
+Local records are used only to resume play, display progress, prevent duplicate first-completion rewards, and remember settings and cosmetics. The publisher does not collect, sell or share these records. Your Android operating system and device manufacturer provide their own platform services under their own policies; this app does not integrate a telemetry service.
+
+RETENTION AND DELETION
+Local progress stays on this device until it is reset, app storage is cleared, or the app is uninstalled. An adult can enter Parent space using the PIN and choose Reset local progress, then type RESET. This removes drawing drafts, kept artwork, story and clay progress, saved games, completion history, wallet balances, cosmetic inventory, equipment and the reward ledger. It keeps the parent PIN and preferences.
+
+Android Settings > Apps > Little Makers > Storage > Clear storage removes all local app records, including the PIN and preferences. This is also the local recovery option if an adult forgets the PIN, but it removes all local progress. The publisher has no server copy to retrieve or delete. There is no account to delete and no remote deletion request is necessary for local app records.
+
+The app disables Android backup and explicitly excludes its storage from supported cloud-backup and device-transfer mechanisms. Device management or backup behavior outside the app's control should be checked with your device provider.
+
+SECURITY AND PARENT SETTINGS
+The app uses Android private app storage. Little Makers does not separately encrypt its database; Android device security and your screen lock help protect it. No system is guaranteed secure. The PIN is a local barrier to settings and deletion, not an online account, proof of parental identity or verifiable parental consent. Parents should supervise initial PIN setup. There is no server-based PIN recovery.
+
+CHILDREN AND VIRTUAL COINS
+Little Makers is designed to avoid transmitting children's personal information. It has no real-money purchases, subscriptions, advertising or paid external links. Coins and stars are earned in play and have no cash value. They cannot be bought, transferred, redeemed or withdrawn. Cosmetic choices use earned coins only; all activity levels remain available without spending money.
+
+ACCESS TO THIS POLICY AND SUPPORT
+A full offline copy is available from Home > Privacy policy without a PIN. It does not open an external link. Adults may contact [NOT CONFIGURED - DEVELOPMENT BUILD] outside the app with privacy questions. Please do not include a child's personal information. Any separate email correspondence or visit to a public policy website is outside the offline app and is handled under the relevant email/website service's policies. Do not assume this policy certifies those separate services.
+
+CHANGES
+If the app introduces online collection, new services, ads or real-money purchases, the publisher must update this policy, the app disclosures and Play Console declarations before releasing that change, and obtain consent where legally required. An updated effective date will identify policy changes.

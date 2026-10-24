@@ -1,0 +1,2 @@
+Gradle wrapper and launch scripts from Gradle 8.13.0. Build tools only; not packaged in the app. Source: https://github.com/gradle/gradle/tree/v8.13.0
+License: see GRADLE-LICENSE.txt. Official SHA-256 verification configured.

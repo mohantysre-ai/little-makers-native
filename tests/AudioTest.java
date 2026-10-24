@@ -1,0 +1,3 @@
+package com.littlemakers.village.nativeapp;
+import java.util.Arrays;
+public final class AudioTest {public static void main(String[]args){short[]tap=AudioSynth.samples(new double[]{440},.09),win=AudioSynth.samples(new double[]{523.25,659.25,783.99,1046.50},.19);if(Arrays.equals(tap,win)||win.length<=tap.length||tap[0]!=0||win[0]!=0)throw new AssertionError("distinct enveloped sounds");for(short[]sound:new short[][]{tap,win})for(short sample:sound)if(Math.abs((int)sample)>4500)throw new AssertionError("amplitude bound");System.out.println("PASS: distinct tap/win PCM, attack envelope and bounded amplitude.");}}

@@ -1,0 +1,41 @@
+plugins { id 'com.android.application' }
+def signingFields = ['LM_UPLOAD_KEYSTORE','LM_UPLOAD_KEY_ALIAS','LM_UPLOAD_STORE_PASSWORD','LM_UPLOAD_KEY_PASSWORD']
+def signingReady = signingFields.every { System.getenv(it) }
+android {
+ namespace 'com.littlemakers.village.nativeapp'
+ compileSdk 36
+ buildToolsVersion '36.0.0'
+ defaultConfig { applicationId 'com.littlemakers.village'; minSdk 24; targetSdk 36; versionCode 20; versionName '2.3.0-native' }
+ compileOptions { sourceCompatibility JavaVersion.VERSION_1_8; targetCompatibility JavaVersion.VERSION_1_8 }
+ signingConfigs {
+  if (signingReady) {
+   playUpload {
+    storeFile file(System.getenv('LM_UPLOAD_KEYSTORE'))
+    keyAlias System.getenv('LM_UPLOAD_KEY_ALIAS')
+    storePassword System.getenv('LM_UPLOAD_STORE_PASSWORD')
+    keyPassword System.getenv('LM_UPLOAD_KEY_PASSWORD')
+   }
+  }
+ }
+ buildTypes {
+  release {
+   minifyEnabled false
+   debuggable false
+   if (signingReady) signingConfig signingConfigs.playUpload
+  }
+ }
+}
+// Android framework APIs only; no runtime libraries.
+def preparePolicy = tasks.register('prepareReleasePolicy', Exec) {
+ workingDir rootProject.projectDir
+ commandLine System.getenv('LM_PYTHON') ?: 'python3', 'tools/prepare-policy.py', '--release'
+}
+def verifySigning = tasks.register('verifyReleaseSigning') {
+ doLast {
+  if (!signingReady) throw new GradleException('Missing upload-key environment variables. Configure the registered Play upload key; never substitute the debug key.')
+  if (!file(System.getenv('LM_UPLOAD_KEYSTORE')).isFile()) throw new GradleException('Upload keystore file does not exist.')
+ }
+}
+tasks.configureEach { task ->
+ if (task.name == 'preReleaseBuild') task.dependsOn preparePolicy, verifySigning
+}

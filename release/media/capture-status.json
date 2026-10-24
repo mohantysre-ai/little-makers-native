@@ -1,0 +1,14 @@
+{
+  "status": "captured_development_build",
+  "app_version": "2.1.1-native",
+  "version_code": 18,
+  "apk_sha256": "41b5e9b2874b88968a5aa54296d0ca06a20e8eac082a4eca22694604514d698c",
+  "capture_device": "Android 7.0/API 24 x86 software emulator",
+  "authentic_app_screenshots_delivered": true,
+  "screenshots": [
+    "screenshots/01-home.png",
+    "screenshots/02-counting.png"
+  ],
+  "authentic_gameplay_video_delivered": false,
+  "limitations": "Software emulation produced a system-level ANR during boot. Captured frames were reviewed without that alert. This is not physical-device stability, Android 16 gesture, full accessibility or 60fps validation. Recheck screenshots after final publisher/release changes."
+}

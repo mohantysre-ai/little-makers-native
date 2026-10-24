@@ -1,0 +1,7 @@
+CREATE TABLE wallet (id INTEGER PRIMARY KEY CHECK(id=1), coins INTEGER NOT NULL DEFAULT 0 CHECK(coins>=0), stars INTEGER NOT NULL DEFAULT 0 CHECK(stars>=0));
+INSERT INTO wallet(id,coins,stars) VALUES(1,0,0);
+CREATE TABLE completion (game_id TEXT PRIMARY KEY, completed_at INTEGER NOT NULL, coins INTEGER NOT NULL, stars INTEGER NOT NULL);
+CREATE TABLE progress (game_id TEXT PRIMARY KEY, state BLOB NOT NULL, updated_at INTEGER NOT NULL);
+CREATE TABLE inventory (item_id TEXT PRIMARY KEY, purchased_at INTEGER NOT NULL);
+CREATE TABLE ledger (event_key TEXT PRIMARY KEY, coin_delta INTEGER NOT NULL, star_delta INTEGER NOT NULL, created_at INTEGER NOT NULL);
+CREATE TABLE equipped (category TEXT PRIMARY KEY, item_id TEXT NOT NULL);
