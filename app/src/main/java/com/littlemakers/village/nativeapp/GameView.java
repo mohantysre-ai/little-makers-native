@@ -44,7 +44,8 @@ public final class GameView extends View {
 
   float drift=motion&&!paused?(float)Math.sin(SystemClock.uptimeMillis()/600.)*6:0;Artwork.buddy(c,52,938+drift,52,wallet.skinColor(),wallet.equipped("accessory"),paint);
   text(c,rules.won?"You explored it!":"Try an idea. No rush.",330,947,28);
-  if(winAt>0&&motion&&!paused){float t=(SystemClock.uptimeMillis()-winAt)/1000f;if(t<1){for(int i=0;i<8;i++){double angle=i*Math.PI/4;float dist=40+150*t;Artwork.shape(c,320+(float)Math.cos(angle)*dist,350+(float)Math.sin(angle)*dist,14*(1-t),i,theme.learningColor(i),paint);}postInvalidateOnAnimation();}else winAt=0;}
+  if(winAt>0&&motion&&!paused){float seconds=(SystemClock.uptimeMillis()-winAt)/1000f;PlayMotion.celebration(c,paint,seconds,320,350,new int[]{theme.mint,theme.rose,theme.gold});if(seconds<1.6f)postInvalidateOnAnimation();else winAt=0;}
+
   // Enlarge hit and accessibility bounds to 64dp. The activity keeps the Canvas at least 320dp wide.
   if(focused>=hits.size())focused=hits.size()-1;
   float minimum=theme.dp(64)/scale;

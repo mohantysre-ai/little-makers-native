@@ -1,0 +1,29 @@
+{
+  "version": "2.4.0-native",
+  "versionCode": 21,
+  "build": "Direct Android SDK 36 build and APK v2/v3 signature verification passed",
+  "automated": {
+    "ruleStateChecks": 10814,
+    "legacySaveFixtures": 400,
+    "schemaPaletteChecks": 2437,
+    "assetAndStoryChecks": 2736,
+    "villageMotionTests": "passed"
+  },
+  "emulator": {
+    "api": 24,
+    "graphics": "software GLES2",
+    "checked": [
+      "3D village frame rendered",
+      "camera drag changes viewpoint",
+      "paint landmark tap opens Color meadow shelf",
+      "install/launch"
+    ],
+    "pending": [
+      "measured 60fps",
+      "physical GPU matrix",
+      "all 210 story playthroughs",
+      "complete nonvisual accessibility"
+    ]
+  },
+  "apkSha256": "7fb857fade16c4e146f6ef89f6210de974158175d6e8b9c3796a09f5341582e1"
+}

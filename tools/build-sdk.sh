@@ -8,7 +8,7 @@ build_tools="$sdk_root/build-tools/36.0.0"
 android_jar="$sdk_root/platforms/android-36/android.jar"
 mkdir -p "$build_root/generated" "$build_root/classes" "$build_root/dex"
 "$build_tools/aapt2" compile --dir "$project_root/app/src/main/res" -o "$build_root/resources.zip"
-"$build_tools/aapt2" link --debug-mode -A "$project_root/app/src/main/assets" -I "$android_jar" --manifest "$project_root/app/src/main/AndroidManifest.xml" --rename-manifest-package com.littlemakers.village --min-sdk-version 24 --target-sdk-version 36 --version-code 20 --version-name 2.3.0-native --java "$build_root/generated" -o "$build_root/base.apk" "$build_root/resources.zip"
+"$build_tools/aapt2" link --debug-mode -A "$project_root/app/src/main/assets" -I "$android_jar" --manifest "$project_root/app/src/main/AndroidManifest.xml" --rename-manifest-package com.littlemakers.village --min-sdk-version 24 --target-sdk-version 36 --version-code 21 --version-name 2.4.0-native --java "$build_root/generated" -o "$build_root/base.apk" "$build_root/resources.zip"
 find "$project_root/app/src/main/java" "$build_root/generated" -name '*.java' > "$build_root/sources.txt"
 "$java_root/bin/javac" --release 8 -classpath "$android_jar" -d "$build_root/classes" @"$build_root/sources.txt"
 "$java_root/bin/jar" cf "$build_root/classes.jar" -C "$build_root/classes" .

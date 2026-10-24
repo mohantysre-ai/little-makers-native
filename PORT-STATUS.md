@@ -1,3 +1,5 @@
+> Superseded for Home rendering and motion by [MOTION-2.4.0.md](MOTION-2.4.0.md). This file records the 2.3.0 content-port baseline.
+
 # Little Makers native 2.3.0 — creative-world port
 
 ## Implemented

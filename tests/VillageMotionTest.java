@@ -1,0 +1,5 @@
+package com.littlemakers.village.nativeapp;
+public final class VillageMotionTest {
+ static void check(boolean b){if(!b)throw new AssertionError();}
+ public static void main(String[]args){VillageSceneState s=new VillageSceneState();s.advance(9,false);check(Math.abs(s.seconds-.05f)<.001);s.advance(-1,false);check(Math.abs(s.seconds-.05f)<.001);s.turn(100);check(s.yaw==28);s.turn(-100);check(s.yaw==-28);s.select(2);for(int i=0;i<7;i++)s.advance(.05f,false);check(s.bounce(2,false)>.5f);check(s.bounce(1,false)==0);check(s.bounce(2,true)==0);float t=s.seconds;s.advance(.05f,true);check(s.seconds==t);for(int i=0;i<25;i++)s.advance(.05f,false);check(s.bounce(2,false)==0);for(int i=0;i<5;i++)check(VillageSceneState.ROUTES[i]!=null&&VillageSceneState.PLACES[i].length==3);boolean rejected=false;try{s.select(9);}catch(IllegalArgumentException expected){rejected=true;}check(rejected);System.out.println("PASS: bounded camera, clamped delta, landmark routing, response decay and reduced-motion state.");}
+}

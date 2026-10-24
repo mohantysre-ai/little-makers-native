@@ -1,3 +1,7 @@
+# Native 3D village update — 2.4.0
+
+See [MOTION-2.4.0.md](MOTION-2.4.0.md) for the real 3D scene, motion controls, validation and remaining 2D content.
+
 # Native creative-world review build — 2.3.0
 
 Start with [PORT-STATUS.md](PORT-STATUS.md) for implemented screens, verification and remaining parity work. Open this folder itself in Android Studio; it contains settings.gradle and the app module.
