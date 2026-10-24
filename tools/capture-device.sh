@@ -4,7 +4,7 @@ set -euo pipefail
 project_root="$(cd "$(dirname "$0")/.." && pwd)"
 adb_bin="${ANDROID_SDK_ROOT:?Set ANDROID_SDK_ROOT}/platform-tools/adb"
 if [ -z "${ANDROID_SERIAL:-}" ]; then echo 'Set ANDROID_SERIAL to the intended adb device.' >&2; exit 1; fi
-"$adb_bin" -s "$ANDROID_SERIAL" shell am start -n com.littlemakers.village/com.littlemakers.village.nativeapp.MainActivity
+"$adb_bin" -s "$ANDROID_SERIAL" shell am start -n com.littlemakers.village/com.littlemakers.village.nativeapp.OpeningActivity
 mkdir -p "$project_root/release/media/screenshots"
 read -r -p 'Show the Home screen on the device, then press Enter. '
 "$adb_bin" -s "$ANDROID_SERIAL" exec-out screencap -p > "$project_root/release/media/screenshots/01-home.png"

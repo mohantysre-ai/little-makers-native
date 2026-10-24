@@ -14,3 +14,6 @@ python3 "$project_root/tests/check_release.py"
 "$java_root/bin/javac" -d "$project_root/build/tests" "$project_root/app/src/main/java/com/littlemakers/village/nativeapp/VillageSceneState.java" "$project_root/tests/VillageMotionTest.java"
 "$java_root/bin/java" -cp "$project_root/build/tests" com.littlemakers.village.nativeapp.VillageMotionTest
 python3 "$project_root/tests/check_web_port.py"
+"$java_root/bin/javac" -d "$project_root/build/tests" "$project_root/app/src/main/java/com/littlemakers/village/nativeapp/BackdropCrop.java" "$project_root/tests/BackdropCropTest.java"
+"$java_root/bin/java" -cp "$project_root/build/tests" com.littlemakers.village.nativeapp.BackdropCropTest
+python3 "$project_root/tests/check_branding.py"
