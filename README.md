@@ -1,3 +1,7 @@
+# Opening, logo and environment — 2.5.0
+
+See [BRANDING-2.5.0.md](BRANDING-2.5.0.md) for the launcher redesign, original artwork, verification and remaining limits.
+
 # Native 3D village update — 2.4.0
 
 See [MOTION-2.4.0.md](MOTION-2.4.0.md) for the real 3D scene, motion controls, validation and remaining 2D content.

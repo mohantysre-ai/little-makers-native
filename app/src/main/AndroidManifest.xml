@@ -1,9 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.littlemakers.village.nativeapp">
  <uses-sdk android:minSdkVersion="24" android:targetSdkVersion="36" />
- <application android:label="Little Makers" android:icon="@drawable/app_icon" android:allowBackup="false" android:fullBackupContent="@xml/backup_rules" android:dataExtractionRules="@xml/data_extraction_rules" android:enableOnBackInvokedCallback="true" android:supportsRtl="true" android:theme="@style/AppTheme">
+ <application android:label="Little Makers" android:icon="@mipmap/app_icon" android:roundIcon="@mipmap/app_icon_round" android:allowBackup="false" android:fullBackupContent="@xml/backup_rules" android:dataExtractionRules="@xml/data_extraction_rules" android:enableOnBackInvokedCallback="true" android:supportsRtl="true" android:theme="@style/AppTheme">
+  <activity android:name="com.littlemakers.village.nativeapp.OpeningActivity" android:exported="true" android:theme="@style/LaunchTheme"><intent-filter><action android:name="android.intent.action.MAIN"/><category android:name="android.intent.category.LAUNCHER"/></intent-filter></activity>
   <activity android:name="com.littlemakers.village.nativeapp.CreativeActivity" android:exported="false" />
-  <activity android:name="com.littlemakers.village.nativeapp.MainActivity" android:exported="true">
-   <intent-filter><action android:name="android.intent.action.MAIN"/><category android:name="android.intent.category.LAUNCHER"/></intent-filter>
-  </activity>
+  <activity android:name="com.littlemakers.village.nativeapp.MainActivity" android:exported="false" />
  </application>
 </manifest>

@@ -1,0 +1,38 @@
+{
+  "version": "2.5.0-native",
+  "versionCode": 22,
+  "build": "SDK36 direct build; APK v2/v3 signing verification passed",
+  "automated": [
+    "10814 rule/state checks",
+    "400 legacy save fixtures",
+    "2437 platform/schema/palette checks",
+    "2736 picture/story asset checks",
+    "village motion tests",
+    "100 crop/viewport combinations",
+    "adaptive icon / launcher theme checks"
+  ],
+  "device": {
+    "api": 24,
+    "type": "software emulator",
+    "observed": [
+      "opening mascot and forest portrait layout",
+      "Play enters 3D village",
+      "textured environment renders behind meshes",
+      "paint landmark opens picture shelf",
+      "landscape opening with readable side panel"
+    ]
+  },
+  "notCertified": [
+    "API31+ system splash visual acceptance",
+    "API33 themed icon visual acceptance",
+    "physical GPU performance",
+    "measured 60fps",
+    "full web feature parity"
+  ],
+  "asset": {
+    "path": "app/src/main/assets/webart/forest_backdrop.webp",
+    "bytes": 209566,
+    "origin": "original built-in image generation; optimized encoding"
+  },
+  "apkSha256": "84802dbe423d9d4c25cea20cc4622396ad71aca77f8f26f0eb463ae2ec23d20e"
+}
