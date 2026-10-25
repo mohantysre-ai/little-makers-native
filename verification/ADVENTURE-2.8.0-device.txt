@@ -1,0 +1,20 @@
+INSTRUMENTATION_STATUS: case=adventure-follow
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: case=adventure-bridge
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: case=adventure-aquarium
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: case=adventure-restored
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: case=adventure-album
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: case=adventure-linked-paint
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: case=adventure-linked-maze
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: case=adventure-dark-reduced
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: case=adventure-break-dialog
+INSTRUMENTATION_STATUS_CODE: 1
+PASS 9 adventure screens; real guided walking, counting, bridge building, wallet idempotency, UI placement and recreation persistence
+

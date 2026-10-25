@@ -7,7 +7,7 @@ build_tools="$sdk_root/build-tools/36.0.0"
 test_build="$project_root/build/render-check"
 mkdir -p "$test_build/classes" "$test_build/dex"
 "$build_tools/aapt2" link -I "$sdk_root/platforms/android-36/android.jar" --manifest "$project_root/tests/device/AndroidManifest.xml" -o "$test_build/base.apk"
-"$java_root/bin/javac" --release 8 -classpath "$sdk_root/platforms/android-36/android.jar" -d "$test_build/classes" "$project_root/tests/device/RenderCheck.java"
+"$java_root/bin/javac" --release 8 -classpath "$sdk_root/platforms/android-36/android.jar" -d "$test_build/classes" "$project_root/tests/device/"*.java
 "$java_root/bin/jar" cf "$test_build/classes.jar" -C "$test_build/classes" .
 PATH="$java_root/bin:$PATH" "$build_tools/d8" --lib "$sdk_root/platforms/android-36/android.jar" --min-api 24 --output "$test_build/dex" "$test_build/classes.jar"
 python3 - "$test_build" <<'PY'

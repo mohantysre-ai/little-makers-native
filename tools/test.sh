@@ -22,3 +22,6 @@ python3 "$project_root/tests/check_branding.py"
 "$java_root/bin/javac" -d "$project_root/build/tests" "$project_root/app/src/main/java/com/littlemakers/village/nativeapp/SceneFrame.java" "$project_root/app/src/main/java/com/littlemakers/village/nativeapp/StoryModels.java" "$project_root/tests/SceneFrameTest.java"
 "$java_root/bin/java" -cp "$project_root/build/tests" com.littlemakers.village.nativeapp.SceneFrameTest
 python3 "$project_root/tests/check_3d_coverage.py"
+"$java_root/bin/javac" -d "$project_root/build/tests" "$project_root/app/src/main/java/com/littlemakers/village/nativeapp/AdventurePath.java" "$project_root/app/src/main/java/com/littlemakers/village/nativeapp/AdventureState.java" "$project_root/app/src/main/java/com/littlemakers/village/nativeapp/HabitatState.java" "$project_root/app/src/main/java/com/littlemakers/village/nativeapp/VillageSceneState.java" "$project_root/tests/AdventureStateTest.java"
+"$java_root/bin/java" -cp "$project_root/build/tests" com.littlemakers.village.nativeapp.AdventureStateTest
+python3 "$project_root/tests/check_adventure.py"

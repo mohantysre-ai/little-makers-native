@@ -1,3 +1,7 @@
+# Adventure integration — 2.8.0
+
+See [ADVENTURE-2.8.0.md](ADVENTURE-2.8.0.md) for guided third-person exploration, the counting rescue, persistent aquarium, original activity links and verification scope.
+
 # App-wide 3D rendering — 2.7.0
 
 See [THREE-D-2.7.0.md](THREE-D-2.7.0.md) for all 20 mini-game types, 210 story scripts, physical art boards, real coverage and remaining visual limits.

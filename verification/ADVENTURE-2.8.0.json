@@ -1,0 +1,47 @@
+{
+  "version": "2.8.0-native",
+  "versionCode": 25,
+  "build": "SDK36 resources/Java/DEX compile and APK v2/v3 signature verification passed",
+  "automated": [
+    "existing 1200-level rule and legacy-save checks",
+    "story model coverage and asset checks",
+    "guided route/collision/bounds tests",
+    "seed counting, bridge traversal and rescue reaction",
+    "habitat unlock/save/reset checks",
+    "internal navigation, wallet/reset wiring and no new permissions"
+  ],
+  "device": {
+    "api": 24,
+    "type": "software emulator",
+    "passedScreens": 9,
+    "cases": [
+      "adventure-follow",
+      "adventure-bridge",
+      "adventure-aquarium",
+      "adventure-restored",
+      "adventure-album",
+      "adventure-linked-paint",
+      "adventure-linked-maze",
+      "adventure-dark-reduced",
+      "adventure-break-dialog"
+    ],
+    "verified": [
+      "renderer-driven guided walking",
+      "UI collection of three distinct seeds",
+      "UI placement of three bridge segments",
+      "central wallet first-clear reward and idempotent replay",
+      "three starter aquarium decorations through UI handlers",
+      "mission and habitat survive Activity recreation",
+      "linked Color Meadow and native maze return to adventure hub",
+      "dark/reduced-motion screen and dark break dialog"
+    ]
+  },
+  "notCertified": [
+    "physical-device frame rate",
+    "wide Android/GPU matrix",
+    "all lessons converted into third-person expeditions",
+    "photorealistic rendering",
+    "full accessibility acceptance"
+  ],
+  "apkSha256": "564b1f9b8ff07193a1417f346671c8981706b35461b966a1508ee6e6a7111957"
+}
