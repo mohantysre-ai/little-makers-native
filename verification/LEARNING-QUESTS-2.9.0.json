@@ -1,0 +1,24 @@
+{
+  "version": "2.9.0-native",
+  "version_code": 26,
+  "min_sdk": 24,
+  "target_sdk": 36,
+  "new_mechanics": 3,
+  "stages_per_mechanic": 24,
+  "rule_assertions": 1839,
+  "build": "PASS",
+  "regressions": "PASS",
+  "device": "PASS: 8 API24 software GLES integration checks",
+  "performance_scope": "API24 software GLES emulator; no physical-device frame-time certification",
+  "apk_sha256": "4f5b8ca91aeb55e326bc2d9f3b5367b13027abdf9d4adb3182ac528dfad70612",
+  "tested_flows": [
+    "adaptive math answers",
+    "balance controls",
+    "robot sequence and collision",
+    "first-clear rewards across all three modes",
+    "reward idempotency",
+    "recreation persistence",
+    "dark theme",
+    "reduced motion"
+  ]
+}

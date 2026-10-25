@@ -1,3 +1,7 @@
+# New in 2.9.0-native
+
+Three original native 3D learning quests: Number Guardians, Balance Workshop and Robot Routes. 24 stages each, saved local progress, shared first-clear rewards, dark/light themes and reduced motion. [Implementation and validation](LEARNING-QUESTS-2.9.0.md).
+
 # Adventure integration — 2.8.0
 
 See [ADVENTURE-2.8.0.md](ADVENTURE-2.8.0.md) for guided third-person exploration, the counting rescue, persistent aquarium, original activity links and verification scope.
