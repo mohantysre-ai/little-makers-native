@@ -1,0 +1,18 @@
+{
+  "version": "3.0.0-native",
+  "version_code": 27,
+  "target_sdk": 36,
+  "min_sdk": 24,
+  "experiences": 9,
+  "new_tasks": 110,
+  "prior_quest_tasks": 72,
+  "linked_map_stops": 24,
+  "island_milestones": 6,
+  "saved_worlds": 6,
+  "new_rule_checks": 1974,
+  "build": "PASS",
+  "regressions": "PASS",
+  "device": "PASS: 10 API24 software-GLES capture flows",
+  "scope": "Stylized 3D scenes with flat guides/labels; no photorealistic or physical-device frame-rate certification",
+  "apk_sha256": "d67c802a6e4f3595ed94d4ea044b74db2ae74052374a120b7675505a887cd7f6"
+}

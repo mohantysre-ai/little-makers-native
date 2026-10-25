@@ -28,3 +28,6 @@ python3 "$project_root/tests/check_adventure.py"
 "$java_root/bin/javac" -d "$project_root/build/tests" "$project_root/app/src/main/java/com/littlemakers/village/nativeapp/LearningQuest.java" "$project_root/tests/LearningQuestTest.java"
 "$java_root/bin/java" -cp "$project_root/build/tests" com.littlemakers.village.nativeapp.LearningQuestTest
 python3 "$project_root/tests/check_quests.py"
+"$java_root/bin/javac" -d "$project_root/build/tests" "$project_root/app/src/main/java/com/littlemakers/village/nativeapp/StoryModels.java" "$project_root/app/src/main/java/com/littlemakers/village/nativeapp/ExplorerCatalog.java" "$project_root/app/src/main/java/com/littlemakers/village/nativeapp/ExplorerState.java" "$project_root/app/src/main/java/com/littlemakers/village/nativeapp/TangramState.java" "$project_root/app/src/main/java/com/littlemakers/village/nativeapp/MakerState.java" "$project_root/app/src/main/java/com/littlemakers/village/nativeapp/TraceTrack.java" "$project_root/tests/ExplorerTest.java"
+"$java_root/bin/java" -cp "$project_root/build/tests" com.littlemakers.village.nativeapp.ExplorerTest
+python3 "$project_root/tests/check_studios.py"

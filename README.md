@@ -1,3 +1,7 @@
+# New in 3.0.0-native
+
+All nine original learning experiences are now reachable from **Play → All 9 learning adventures · new studios**. Adds Discovery Trail, Letter Adventures, Learning Islands, Little Makers Friends, Shape Builders and Maker World alongside the three existing quests. [Content, implementation, actual screenshots and verification](NINE-ADVENTURES-3.0.0.md).
+
 # New in 2.9.0-native
 
 Three original native 3D learning quests: Number Guardians, Balance Workshop and Robot Routes. 24 stages each, saved local progress, shared first-clear rewards, dark/light themes and reduced motion. [Implementation and validation](LEARNING-QUESTS-2.9.0.md).

@@ -4,8 +4,9 @@ import java.util.*;
 final class SceneFrame {
  static final int PANEL=0,SPHERE=1,CONE=2,BLOCK=3,CHARACTER=4,MODEL=5;
  static final class Node {
-  final int type,color,model;final float x,y,w,h,z;final boolean animate;
-  Node(int type,float x,float y,float w,float h,float z,int color,int model,boolean animate){if(!Float.isFinite(x)||!Float.isFinite(y)||!Float.isFinite(w)||!Float.isFinite(h)||!Float.isFinite(z)||w<=0||h<=0)throw new IllegalArgumentException("Invalid scene node");this.type=type;this.x=x;this.y=y;this.w=w;this.h=h;this.z=z;this.color=color;this.model=model;this.animate=animate;}
+  final int type,color,model;final float x,y,w,h,z;final boolean animate;final float rotation;
+  Node(int type,float x,float y,float w,float h,float z,int color,int model,boolean animate){this(type,x,y,w,h,z,color,model,animate,0);}
+  Node(int type,float x,float y,float w,float h,float z,int color,int model,boolean animate,float rotation){if(!Float.isFinite(rotation))throw new IllegalArgumentException("Invalid rotation");this.rotation=rotation;if(!Float.isFinite(x)||!Float.isFinite(y)||!Float.isFinite(w)||!Float.isFinite(h)||!Float.isFinite(z)||w<=0||h<=0)throw new IllegalArgumentException("Invalid scene node");this.type=type;this.x=x;this.y=y;this.w=w;this.h=h;this.z=z;this.color=color;this.model=model;this.animate=animate;}
  }
  final Node[]nodes;final int background;final float height;final String environment;final boolean won;final int branch;
  SceneFrame(List<Node>nodes,int background,float height,String environment,boolean won){this(nodes,background,height,environment,won,-1);}
