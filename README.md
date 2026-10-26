@@ -1,3 +1,7 @@
+# Current build: 3.3.0-native
+
+Wonder Isles now fills the play area, with animated toy destinations and lighter touch/audio handling. See [changes, evidence and limitations](MOTION-3.3.0.md).
+
 # New in 3.2.0-native
 
 Picture-first animated native toy menus, direct Village routing, a visual puzzle shelf and smooth maze movement. This release reconciles the old default master branch with main; both branches now contain the current app and preserve the prior theme/IDE changes. [Actual screens, source notes and validation](VISUAL-PLAY-3.2.0.md).

@@ -12,11 +12,11 @@ final class AdventureSurface extends GLSurfaceView implements GLSurfaceView.Rend
  private Mesh sphere,box,cone,cylinder;private ForestBackdrop forest;
  private final float[]projection=new float[16],view=new float[16],vp=new float[16],model=new float[16],mvp=new float[16],normalMatrix=new float[9],inverse=new float[16],near=new float[4],far=new float[4];
  private int program,posAttr,normalAttr,mvpUniform,modelUniform,colorUniform,normalUniform,width=1,height=1;
- private long lastFrame;private float downX,downY,lastX,cameraX,cameraZ=4;private boolean dragged,stick;volatile boolean joystickMode,overview;volatile long renderedFrames;
- AdventureSurface(Context c,AdventureState state,boolean dark,boolean reduced,int skin,String accessory,Listener listener){super(c);this.state=state;this.dark=dark;this.reduced=reduced;this.skin=skin;this.accessory=accessory;this.listener=listener;cameraX=state.x;cameraZ=state.z;setEGLContextClientVersion(2);setEGLConfigChooser(8,8,8,0,16,0);setPreserveEGLContextOnPause(true);setRenderer(this);setRenderMode(RENDERMODE_CONTINUOUSLY);setContentDescription("Wonder Isles. Tap ground to walk. Drag horizontally to look around. Optional joystick at bottom left. Clue and action buttons below provide guided controls.");}
- void action(){queueEvent(()->{int event=state.interact();post(()->listener.changed(event));});}
- void clue(){state.nextClue();requestRender();}
- void recenter(){state.turn(-state.yaw);requestRender();}
+ private final float[] ray=new float[4];private long lastFrame;private float downX,downY,lastX,cameraX,cameraZ=4;private boolean dragged,stick;volatile boolean joystickMode,overview;volatile long renderedFrames;
+ AdventureSurface(Context c,AdventureState state,boolean dark,boolean reduced,int skin,String accessory,Listener listener){super(c);this.state=state;this.dark=dark;this.reduced=reduced;this.skin=skin;this.accessory=accessory;this.listener=listener;cameraX=state.x;cameraZ=state.z;setEGLContextClientVersion(2);setEGLConfigChooser(8,8,8,0,16,0);setPreserveEGLContextOnPause(true);setRenderer(this);setRenderMode(reduced?RENDERMODE_WHEN_DIRTY:RENDERMODE_CONTINUOUSLY);setContentDescription("Wonder Isles. Tap ground to walk. Drag horizontally to look around. The clue and contextual action provide guided controls.");}
+ void action(){queueEvent(()->{int event=state.interact();post(()->listener.changed(event));requestRender();});}
+ void clue(){queueEvent(()->{state.nextClue();requestRender();});}
+ void recenter(){queueEvent(()->{state.turn(-state.yaw);requestRender();});}
  private int shader(int type,String code){int shader=GLES20.glCreateShader(type);GLES20.glShaderSource(shader,code);GLES20.glCompileShader(shader);int[]ok={0};GLES20.glGetShaderiv(shader,GLES20.GL_COMPILE_STATUS,ok,0);if(ok[0]==0)throw new IllegalStateException("Village shader failed");return shader;}
  @Override public void onSurfaceCreated(GL10 gl,EGLConfig config){
   try{
@@ -31,7 +31,7 @@ final class AdventureSurface extends GLSurfaceView implements GLSurfaceView.Rend
  private void draw(Mesh mesh,float x,float y,float z,float sx,float sy,float sz,int color,float angle){
   Matrix.setIdentityM(model,0);Matrix.translateM(model,0,x,y,z);if(angle!=0)Matrix.rotateM(model,0,angle,0,1,0);Matrix.scaleM(model,0,sx,sy,sz);Matrix.multiplyMM(mvp,0,vp,0,model,0);
   for(int column=0;column<3;column++){float scale=column==0?sx:column==1?sy:sz;for(int row=0;row<3;row++)normalMatrix[column*3+row]=model[column*4+row]/(scale*scale);}GLES20.glUniformMatrix3fv(normalUniform,1,false,normalMatrix,0);GLES20.glUniformMatrix4fv(mvpUniform,1,false,mvp,0);GLES20.glUniformMatrix4fv(modelUniform,1,false,model,0);GLES20.glUniform3f(colorUniform,((color>>16)&255)/255f,((color>>8)&255)/255f,(color&255)/255f);
-  mesh.data.position(0);GLES20.glVertexAttribPointer(posAttr,3,GLES20.GL_FLOAT,false,24,mesh.data);mesh.data.position(3);GLES20.glVertexAttribPointer(normalAttr,3,GLES20.GL_FLOAT,false,24,mesh.data);GLES20.glDrawArrays(GLES20.GL_TRIANGLES,0,mesh.count);
+  mesh.bind();GLES20.glVertexAttribPointer(posAttr,3,GLES20.GL_FLOAT,false,24,0);GLES20.glVertexAttribPointer(normalAttr,3,GLES20.GL_FLOAT,false,24,12);GLES20.glDrawArrays(GLES20.GL_TRIANGLES,0,mesh.count);GLES20.glBindBuffer(GLES20.GL_ARRAY_BUFFER,0);
  }
  private void ball(float x,float y,float z,float r,int color){draw(sphere,x,y,z,r,r,r,color,0);}
 
@@ -39,7 +39,7 @@ final class AdventureSurface extends GLSurfaceView implements GLSurfaceView.Rend
  @Override public void onDrawFrame(GL10 gl){
   long now=android.os.SystemClock.uptimeMillis();float dt=lastFrame==0?0:Math.min(.05f,(now-lastFrame)/1000f);lastFrame=now;state.advance(dt,reduced);
   GLES20.glClearColor(dark?.09f:.78f,dark?.12f:.9f,dark?.22f:.96f,1);GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT|GLES20.GL_DEPTH_BUFFER_BIT);if(program==0)return;
-  synchronized(state){float blend=reduced?1:1-(float)Math.exp(-dt*5);cameraX+=(state.x-cameraX)*blend;cameraZ+=(state.z-cameraZ)*blend;
+  {float blend=reduced?1:1-(float)Math.exp(-dt*5);cameraX+=(state.x-cameraX)*blend;cameraZ+=(state.z-cameraZ)*blend;
    if(forest!=null)forest.draw(width,height,state.yaw,dark);GLES20.glUseProgram(program);GLES20.glEnableVertexAttribArray(posAttr);GLES20.glEnableVertexAttribArray(normalAttr);
    float t=state.seconds;double a=Math.toRadians(state.yaw);synchronized(vp){if(overview)Matrix.setLookAtM(view,0,0,10,10,0,0,0,0,1,0);else Matrix.setLookAtM(view,0,cameraX+(float)Math.sin(a)*6,4.8f,cameraZ+(float)Math.cos(a)*6,cameraX,.45f,cameraZ-1,0,1,0);Matrix.multiplyMM(vp,0,projection,0,view,0);}
    draw(sphere,0,-1,0,6.5f,.55f,5,0x78c6d4,0);draw(sphere,0,-.7f,0,6,.6f,4.5f,0xb0cf8d,0);draw(sphere,0,-.82f,0,5.8f,.4f,4.35f,0x7ca984,0);
@@ -58,19 +58,20 @@ final class AdventureSurface extends GLSurfaceView implements GLSurfaceView.Rend
    // Equipped companion; walk phase is driven by travelled distance, not a decorative slide.
    float bob=reduced?0:state.moving?(float)Math.sin(state.walkPhase)*.035f:(float)Math.sin(t*1.5)*.025f;
    draw(sphere,state.x,.42f+bob,state.z,.31f,.38f,.27f,skin,state.heading);double angle=Math.toRadians(state.heading);float fx=(float)Math.sin(angle),fz=(float)Math.cos(angle),rx=fz,rz=-fx;
-   for(int side:new int[]{-1,1}){float ex=state.x+fx*.25f+rx*side*.105f,ez=state.z+fz*.25f+rz*side*.105f;ball(ex,.53f+bob,ez,.035f,0x2e3d50);float step=reduced?0:state.moving?(float)Math.sin(state.walkPhase+side)*.09f:0;draw(sphere,state.x+rx*side*.13f+fx*step,.07f,state.z+rz*side*.13f+fz*step,.12f,.065f,.16f,skin,state.heading);draw(sphere,state.x+rx*side*.35f,.4f+bob,state.z+rz*side*.35f,.12f,.075f,.1f,skin,state.heading);}
+   for(int side=-1;side<=1;side+=2){float ex=state.x+fx*.25f+rx*side*.105f,ez=state.z+fz*.25f+rz*side*.105f;ball(ex,.53f+bob,ez,.035f,0x2e3d50);float step=reduced?0:state.moving?(float)Math.sin(state.walkPhase+side)*.09f:0;draw(sphere,state.x+rx*side*.13f+fx*step,.07f,state.z+rz*side*.13f+fz*step,.12f,.065f,.16f,skin,state.heading);draw(sphere,state.x+rx*side*.35f,.4f+bob,state.z+rz*side*.35f,.12f,.075f,.1f,skin,state.heading);}
    if(accessory.equals("hat")){draw(cylinder,state.x,.84f+bob,state.z,.3f,.035f,.27f,0xd1ab77,0);draw(cylinder,state.x,.92f+bob,state.z,.18f,.1f,.17f,0xd1ab77,0);}else if(accessory.equals("bow")){ball(state.x+rx*.24f,.73f+bob,state.z+rz*.24f,.09f,0xdc9cb6);}else if(accessory.equals("star"))ball(state.x+fx*.28f,.37f+bob,state.z+fz*.28f,.06f,0xf3d280);
    if(state.moving)draw(sphere,state.targetX,.02f,state.targetZ,.18f,.018f,.18f,0xffebaa,0);
-  }renderedFrames++;
+  }renderedFrames++;if(reduced&&state.moving)requestRender();
  }
- private void ground(float sx,float sy){float nx=2*sx/Math.max(1,getWidth())-1,ny=1-2*sy/Math.max(1,getHeight());synchronized(vp){if(!Matrix.invertM(inverse,0,vp,0))return;Matrix.multiplyMV(near,0,inverse,0,new float[]{nx,ny,-1,1},0);Matrix.multiplyMV(far,0,inverse,0,new float[]{nx,ny,1,1},0);}
+ private void ground(float sx,float sy){float nx=2*sx/Math.max(1,getWidth())-1,ny=1-2*sy/Math.max(1,getHeight());synchronized(vp){if(!Matrix.invertM(inverse,0,vp,0))return;ray[0]=nx;ray[1]=ny;ray[2]=-1;ray[3]=1;Matrix.multiplyMV(near,0,inverse,0,ray,0);ray[2]=1;Matrix.multiplyMV(far,0,inverse,0,ray,0);}
   for(int i=0;i<3;i++){near[i]/=near[3];far[i]/=far[3];}float dy=far[1]-near[1];if(Math.abs(dy)<.001)return;float distance=-near[1]/dy;if(distance<0)return;state.target(near[0]+(far[0]-near[0])*distance,near[2]+(far[2]-near[2])*distance);}
  @Override public boolean onTouchEvent(MotionEvent e){int action=e.getActionMasked();if(action==MotionEvent.ACTION_DOWN){downX=lastX=e.getX();downY=e.getY();dragged=false;stick=joystickMode&&downX<getWidth()*.4f&&downY>getHeight()*.55f;getParent().requestDisallowInterceptTouchEvent(true);return true;}
-  if(action==MotionEvent.ACTION_MOVE){if(stick){float radius=getResources().getDisplayMetrics().density*48;state.joystick((e.getX()-downX)/radius,(e.getY()-downY)/radius);}else if(Math.hypot(e.getX()-downX,e.getY()-downY)>getResources().getDisplayMetrics().density*12){dragged=true;state.turn((e.getX()-lastX)*.18f);}lastX=e.getX();return true;}
-  if(action==MotionEvent.ACTION_UP||action==MotionEvent.ACTION_CANCEL){getParent().requestDisallowInterceptTouchEvent(false);if(stick)state.joystick(0,0);else if(!dragged&&action==MotionEvent.ACTION_UP)ground(e.getX(),e.getY());if(action==MotionEvent.ACTION_UP)performClick();return true;}return true;}
+  if(action==MotionEvent.ACTION_MOVE){if(stick){float radius=getResources().getDisplayMetrics().density*48;final float jx=(e.getX()-downX)/radius,jy=(e.getY()-downY)/radius;queueEvent(()->{state.joystick(jx,jy);requestRender();});}else if(Math.hypot(e.getX()-downX,e.getY()-downY)>getResources().getDisplayMetrics().density*12){dragged=true;final float delta=(e.getX()-lastX)*.18f;queueEvent(()->{state.turn(delta);requestRender();});}lastX=e.getX();return true;}
+  if(action==MotionEvent.ACTION_UP||action==MotionEvent.ACTION_CANCEL){getParent().requestDisallowInterceptTouchEvent(false);if(stick)queueEvent(()->{state.joystick(0,0);requestRender();});else if(!dragged&&action==MotionEvent.ACTION_UP){final float tx=e.getX(),ty=e.getY();queueEvent(()->{ground(tx,ty);requestRender();});performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);}if(action==MotionEvent.ACTION_UP)performClick();return true;}return true;}
  @Override public boolean performClick(){super.performClick();return true;}
- @Override public void onPause(){state.joystick(0,0);queueEvent(()->lastFrame=0);super.onPause();}
+ @Override public void onPause(){queueEvent(()->{state.joystick(0,0);lastFrame=0;});super.onPause();}
  private static final class Mesh {
+  int buffer;void bind(){if(buffer==0){int[]ids=new int[1];GLES20.glGenBuffers(1,ids,0);buffer=ids[0];GLES20.glBindBuffer(GLES20.GL_ARRAY_BUFFER,buffer);data.position(0);GLES20.glBufferData(GLES20.GL_ARRAY_BUFFER,data.capacity()*4,data,GLES20.GL_STATIC_DRAW);}else GLES20.glBindBuffer(GLES20.GL_ARRAY_BUFFER,buffer);}
   final FloatBuffer data;final int count;Mesh(float[]v){data=ByteBuffer.allocateDirect(v.length*4).order(ByteOrder.nativeOrder()).asFloatBuffer();data.put(v).position(0);count=v.length/6;}
   static void vertex(float[]v,int[]offset,float x,float y,float z,float nx,float ny,float nz){int i=offset[0];v[i++]=x;v[i++]=y;v[i++]=z;v[i++]=nx;v[i++]=ny;v[i++]=nz;offset[0]=i;}
   static Mesh sphere(){float[]v=new float[10*16*6*6];int[]o={0};for(int a=0;a<10;a++)for(int b=0;b<16;b++)for(int corner:new int[]{0,1,2,0,2,3}){double lat=Math.PI*(a+(corner==1||corner==2?1:0))/10,lon=2*Math.PI*(b+(corner>=2?1:0))/16;float x=(float)(Math.sin(lat)*Math.cos(lon)),y=(float)Math.cos(lat),z=(float)(Math.sin(lat)*Math.sin(lon));vertex(v,o,x,y,z,x,y,z);}return new Mesh(v);}

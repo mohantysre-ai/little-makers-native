@@ -1,0 +1,13 @@
+{
+  "version": "3.3.0-native",
+  "versionCode": 30,
+  "apk_sha256": "ca0055bd6c9b0b5c4fa453b42e47ac509048671d11380261fd1963afb2b4d1b4",
+  "apk_bytes": 19462229,
+  "min_sdk": 24,
+  "target_sdk": 36,
+  "device": "API 24 x86_64 software emulator, 480x800; no physical-device FPS certification",
+  "scope": "Immersive island layout and toy dock; shared audio and touch feedback performance changes",
+  "result": "PASS: rule suite and Motion33Check on final APK",
+  "audio_burst_ui_elapsed_ms": 435,
+  "audio_measurement_note": "20 tap requests plus stop and instrumentation idle synchronization; not an input-latency or FPS benchmark"
+}
