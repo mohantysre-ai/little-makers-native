@@ -1,0 +1,22 @@
+{
+  "version": "3.4.0-native",
+  "versionCode": 31,
+  "min_sdk": 24,
+  "target_sdk": 36,
+  "apk_sha256": "250520d88ac4a04be6133ec4574aa2ea767c1e08106c244e8672019a6d8240a1",
+  "apk_bytes": 19466325,
+  "device": "API 24 x86_64, 480x800, software GPU emulator",
+  "checks": "Rule suite PASS; Hud34Check PASS, six actual captures",
+  "renderer_checks": [
+    "same avatar renderer after purchase and repeat equip",
+    "one live GL viewport for wardrobe and aquarium",
+    "album has no GL surface",
+    "accessible sand-circle placement",
+    "persistent GPU vertex buffer uploaded",
+    "GL_NO_ERROR",
+    "restored decorations",
+    "white dark text",
+    "reduced-motion idle"
+  ],
+  "limitations": "Not a physical-device GPU, thermal, frame-pacing or broad Android certification"
+}

@@ -1,0 +1,14 @@
+INSTRUMENTATION_STATUS: case=wardrobe
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: case=wardrobe-equipped
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: case=album
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: case=aquarium
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: case=aquarium-decorated
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: case=aquarium-dark
+INSTRUMENTATION_STATUS_CODE: 1
+PASS 6 captures: wardrobe purchase/equip idempotence, unchanged live avatar renderer, illustrated milestones, one GL viewport per scene, accessible sand-circle placement, GPU vertex buffer upload, GL_NO_ERROR, saved decor and white dark labels, reduced-motion idle. Software emulator is not a physical GPU/FPS benchmark.
+

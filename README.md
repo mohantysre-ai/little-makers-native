@@ -1,4 +1,8 @@
-# Current build: 3.3.0-native
+# Current build: 3.4.0-native
+
+The wardrobe, album and aquarium now use illustrated game controls. Shared button styling and aquarium GPU handling are updated. See [changes, actual captures and validation](GAME-HUD-3.4.0.md).
+
+## Previous build: 3.3.0-native
 
 Wonder Isles now fills the play area, with animated toy destinations and lighter touch/audio handling. See [changes, evidence and limitations](MOTION-3.3.0.md).
 
