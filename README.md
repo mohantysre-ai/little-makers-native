@@ -1,3 +1,7 @@
+# New in 3.0.1-native
+
+Fixes the missing **All 9 learning adventures** entry on the bottom Play tab and replaces the catalog list with a responsive grid. [Fix, update instructions and actual screenshots](PLAY-TAB-3.0.1.md).
+
 # New in 3.0.0-native
 
 All nine original learning experiences are now reachable from **Play → All 9 learning adventures · new studios**. Adds Discovery Trail, Letter Adventures, Learning Islands, Little Makers Friends, Shape Builders and Maker World alongside the three existing quests. [Content, implementation, actual screenshots and verification](NINE-ADVENTURES-3.0.0.md).

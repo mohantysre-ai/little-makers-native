@@ -1,0 +1,9 @@
+{
+  "version": "3.0.1-native",
+  "version_code": 28,
+  "scope": "CreativeActivity Play-tab launcher plus responsive all-nine grid",
+  "build": "PASS",
+  "regressions": "PASS",
+  "device": "PASS: visible Play-tab shortcut, nine catalog cards, six studio launch/return checks, three screen captures",
+  "apk_sha256": "39e1918cc9ea45c568b39042d35466169722ddcd52efb616e79df41cad6277de"
+}

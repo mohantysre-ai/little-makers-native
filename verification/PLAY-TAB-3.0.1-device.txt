@@ -1,0 +1,8 @@
+INSTRUMENTATION_STATUS: case=play-tab-launcher
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: case=all-nine-catalog
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: case=maker-world-from-play
+INSTRUMENTATION_STATUS_CODE: 1
+PASS 3 captures; 3.0.1 bottom-Play banner visible without scrolling; all nine catalog options present; six studio buttons launch the correct internal activities; Back returns to the same playroom
+
