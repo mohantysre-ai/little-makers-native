@@ -1,0 +1,15 @@
+{
+  "version": "3.2.0-native",
+  "version_code": 29,
+  "target_sdk": 36,
+  "min_sdk": 24,
+  "build": "PASS",
+  "regressions": "PASS",
+  "device": "PASS: seven API24 software-GLES visual/navigation/motion flows",
+  "branch_reconciliation": {
+    "main_parent": "1b0d7d57652dcf9f994a59a9e052f5c43793accf",
+    "master_parent": "48fa136c4100ee63885f2893bf3eb324d1d094b2"
+  },
+  "apk_sha256": "f5d47878d202ceed2c942b40643ad0782075101b8009c83ae8fd57d2851a086a",
+  "limits": "Stylized meshes and flat overlays; no physical-device frame-rate or universal GPU claim"
+}

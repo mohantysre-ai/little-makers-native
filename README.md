@@ -1,3 +1,7 @@
+# New in 3.2.0-native
+
+Picture-first animated native toy menus, direct Village routing, a visual puzzle shelf and smooth maze movement. This release reconciles the old default master branch with main; both branches now contain the current app and preserve the prior theme/IDE changes. [Actual screens, source notes and validation](VISUAL-PLAY-3.2.0.md).
+
 # New in 3.0.1-native
 
 Fixes the missing **All 9 learning adventures** entry on the bottom Play tab and replaces the catalog list with a responsive grid. [Fix, update instructions and actual screenshots](PLAY-TAB-3.0.1.md).
