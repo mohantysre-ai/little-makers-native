@@ -3,7 +3,7 @@ import android.content.Context;import android.graphics.*;import android.view.*;i
 /** Six independent accessible toys; one small Canvas per target, never another GL context. */
 final class AnimatedToyDock extends GridLayout {
  interface Listener{void chosen(int index);}private boolean running=true;private final boolean reduced;
- private static final String[]NAMES={"Clay","Paint","Shapes","Stories","Texture","Adventures"};
+ private static final String[]NAMES={"Clay","Paint","Shapes","Stories","Texture","Learn K–10"};
  private static final int[]COLORS={0xffe7a878,0xffef96bb,0xff92bbe9,0xffb2a0dd,0xff83c9a4,0xffedc56e};
  AnimatedToyDock(Context c,ThemeManager theme,boolean reduced,Listener listener){super(c);this.reduced=reduced;setColumnCount(3);setRowCount(2);setPadding(theme.dp(4),0,theme.dp(4),0);for(int i=0;i<NAMES.length;i++){final int item=i;Toy toy=new Toy(c,theme,i);toy.setContentDescription(NAMES[i]+", open activity");toy.setFocusable(true);toy.setOnClickListener(v->{v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);listener.chosen(item);});GridLayout.LayoutParams lp=new GridLayout.LayoutParams(GridLayout.spec(i/3,1f),GridLayout.spec(i%3,1f));lp.width=0;lp.height=0;lp.setGravity(Gravity.FILL);addView(toy,lp);}}
  void stop(){running=false;for(int i=0;i<getChildCount();i++)getChildAt(i).invalidate();}

@@ -1,0 +1,4 @@
+package com.littlemakers.village.nativeapp;
+public final class StageProjectionTest {
+ public static void main(String[]args){int count=0;for(int w:new int[]{320,360,480,1080,1200})for(int h:new int[]{180,360,520,800,1920})for(float scene:new float[]{250,280,320,520,640,840,1000}){float xPixelsPerUnit=w/640f;float yPixelsPerUnit=h/scene*StageProjection.modelYScale(w,h,scene);if(Math.abs(xPixelsPerUnit-yPixelsPerUnit)>.00001f)throw new AssertionError("Flattened model "+w+"x"+h+" / "+scene);count++;}for(int[]bad:new int[][]{{0,1},{1,0},{-1,2}}){try{StageProjection.modelYScale(bad[0],bad[1],840);throw new AssertionError("invalid viewport");}catch(IllegalArgumentException expected){}}System.out.println("PASS "+count+" viewport combinations preserve uniform model proportions independently of normalized scene positioning.");}
+}

@@ -1,0 +1,26 @@
+{
+  "version": "3.5.0-native",
+  "versionCode": 32,
+  "apk_sha256": "c5e98cbcf709d4cd596bf7bafab14978ec34af414d073ff12f16e0e125208a80",
+  "apk_bytes": 19494997,
+  "min_sdk": 24,
+  "target_sdk": 36,
+  "new_activity_count": 264,
+  "maths": 132,
+  "english": 66,
+  "science": 66,
+  "level_bands": 11,
+  "companion_models": 8,
+  "new_game_worlds": 3,
+  "device": "API24 x86_64, 480x800, software GPU emulator",
+  "limitations": [
+    "Starter activities, not a complete or board-certified school curriculum",
+    "Stylized 3D; original three-step story scripts remain",
+    "Real-device GPU/FPS/thermal and broad Android matrix remain unmeasured"
+  ],
+  "result": "PASS: full rule suite plus final nine-capture Trail35Check",
+  "tested_navigation": "Album actual launch; mission/subject/level Back hierarchy; Story Back to shelf",
+  "tested_rendering": "Eight distinct 3D companion models, artwork tap selection, drag/launch outcomes, shared renderer reuse, GL_NO_ERROR including art textures, dark/reduced motion",
+  "viewport_proportion_checks": 175,
+  "final_renderer_device_recheck": "PASS: final APK after aspect correction; nine captures; GL_NO_ERROR; no AndroidRuntime errors"
+}

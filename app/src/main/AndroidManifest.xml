@@ -7,5 +7,6 @@
   <activity android:name="com.littlemakers.village.nativeapp.AdventureActivity" android:exported="false" />
   <activity android:name="com.littlemakers.village.nativeapp.CreativeActivity" android:exported="false" />
   <activity android:name="com.littlemakers.village.nativeapp.MainActivity" android:exported="false" />
+  <activity android:name="com.littlemakers.village.nativeapp.SchoolTrailActivity" android:exported="false" />
  </application>
 </manifest>

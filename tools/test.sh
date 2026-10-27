@@ -33,3 +33,7 @@ python3 "$project_root/tests/check_quests.py"
 python3 "$project_root/tests/check_studios.py"
 "$java_root/bin/javac" -d "$project_root/build/tests" "$project_root/app/src/main/java/com/littlemakers/village/nativeapp/VillageRoutes.java" "$project_root/tests/VillageRoutesTest.java"
 "$java_root/bin/java" -cp "$project_root/build/tests" com.littlemakers.village.nativeapp.VillageRoutesTest
+"$java_root/bin/javac" -d "$project_root/build/tests" "$project_root/app/src/main/java/com/littlemakers/village/nativeapp/SchoolContent.java" "$project_root/app/src/main/java/com/littlemakers/village/nativeapp/CompanionCast.java" "$project_root/tests/SchoolContentTest.java"
+"$java_root/bin/java" -cp "$project_root/build/tests" com.littlemakers.village.nativeapp.SchoolContentTest
+"$java_root/bin/javac" -d "$project_root/build/tests" "$project_root/app/src/main/java/com/littlemakers/village/nativeapp/StageProjection.java" "$project_root/tests/StageProjectionTest.java"
+"$java_root/bin/java" -cp "$project_root/build/tests" com.littlemakers.village.nativeapp.StageProjectionTest

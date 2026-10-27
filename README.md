@@ -1,4 +1,8 @@
-# Current build: 3.4.0-native
+# Current build: 3.5.0-native
+
+Eight original 3D companions and 264 Kindergarten–Class 10 starter activities in three reactive worlds. Story placement reactions and local Back navigation are updated. Open **Isles → Learn K–10** or **Album → Learning trail**. [Content inventory, actual captures, source notes and validation](LEARNING-TRAIL-3.5.0.md).
+
+## Previous build: 3.4.0-native
 
 The wardrobe, album and aquarium now use illustrated game controls. Shared button styling and aquarium GPU handling are updated. See [changes, actual captures and validation](GAME-HUD-3.4.0.md).
 
