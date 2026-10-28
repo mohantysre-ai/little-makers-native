@@ -37,7 +37,12 @@ final class HabitatSurface extends GLSurfaceView implements GLSurfaceView.Render
   // Low sand banks replace the old tall columns. Only the selected spot needs a two-draw halo.
   for(int bank=0;bank<3;bank++)draw(sphere,(bank-1)*2.8f,-3.4f,-.8f,1.8f,.55f,.25f,dark?0x65756b:0xe1d1a9,bank*12);
   int selected;synchronized(state){System.arraycopy(state.slots,0,renderSlots,0,9);selected=state.selected;}for(int i=0;i<9;i++){float x=slotX(i),y=slotY(i);if(i==selected)draw(sphere,x,y-.28f,-.24f,.83f,.20f,.14f,0xf7dda0,0);draw(sphere,x,y-.28f,-.12f,.68f,.14f,.12f,0xabc5b2,0);int type=renderSlots[i];if(type>=0)decoration(type,x,y);}
-  for(int i=0;i<3;i++){float phase=time*.35f+i*2.1f,x=(float)Math.sin(phase)*2.8f,y=2.5f+(float)Math.cos(phase)*.25f;draw(sphere,x,y,.15f,.43f,.23f,.22f,FISH_COLORS[i],0);draw(cone,x-.52f,y,.15f,.24f,.3f,.14f,0xe4c898,-90);ball(x+.25f,y+.07f,.34f,.045f,0x354a5a);draw(sphere,x-.05f,y-.19f+(reduced?0:(float)Math.sin(time*7+i)*.05f),.32f,.17f,.08f,.07f,0xf7dda9,15);}
+  for(int i=0;i<3;i++){float phase=time*.35f+i*2.1f,x=(float)Math.sin(phase)*2.8f,y=2.5f+(float)Math.cos(phase)*.25f;float dir=Math.cos(phase)>=0?1:-1,wag=reduced?0:(float)Math.sin(time*6+i)*12;
+   draw(sphere,x,y,.15f,.57f,.20f,.14f,0x969d78,0);draw(sphere,x,y-.07f,.18f,.44f,.11f,.12f,0xd8d6bc,0);
+   for(int side=-1;side<=1;side+=2)draw(cone,x-dir*.66f,y+side*.09f,.15f,.20f,.14f,.025f,0x818a67,90+side*30+wag);
+   draw(cone,x-.05f,y+.21f,.16f,.23f,.12f,.025f,0x89906a,180);draw(sphere,x+dir*.15f,y-.1f,.29f,.15f,.035f,.025f,0xa9aa7f,wag);
+   draw(sphere,x+dir*.25f,y,.28f,.012f,.11f,.01f,0x6c775f,dir*12);ball(x+dir*.38f,y+.05f,.28f,.025f,0x263328);
+  }
   for(int i=0;i<7;i++){float y=-3.5f+(time*.45f+i*1.1f)%7.5f;ball(-3.6f+(float)Math.sin(y)*.08f,y,.05f,.04f,0xd1e9dd);}GLES20.glBindBuffer(GLES20.GL_ARRAY_BUFFER,0);boundMesh=null;renderedFrames++;
  }
  private void decoration(int type,float x,float y){switch(type){case 0:case 4:for(int i=0;i<3;i++)draw(sphere,x+(i-1)*.19f,y+.15f,-.03f,.11f,.5f,.10f,type==0?0x75ad8a:0xd4a0b8,(i-1)*18+(reduced?0:(float)Math.sin(time+i)*3));break;

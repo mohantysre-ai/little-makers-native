@@ -1,0 +1,12 @@
+{
+  "version": "3.6.0-native",
+  "versionCode": 33,
+  "apk_sha256": "35c98f70d3248a140ddd29cb130f3a57e9a1de61cac7cd22ee649ba7c1b0d79e",
+  "apk_bytes": 19494997,
+  "native_build": "PASS",
+  "signature_verification": "PASS",
+  "device_test_apk_compile": "PASS",
+  "rule_suite": "PASS",
+  "fresh_device_visual_run": "NOT RUN",
+  "photorealistic_asset_replacement": "NOT COMPLETE"
+}

@@ -1,3 +1,7 @@
+# Little Makers 3.6.0: readability and natural-form meshes
+
+See [changes and validation limits](READABILITY-3.6.0.md).
+
 # Current build: 3.5.0-native
 
 Eight original 3D companions and 264 Kindergarten–Class 10 starter activities in three reactive worlds. Story placement reactions and local Back navigation are updated. Open **Isles → Learn K–10** or **Album → Learning trail**. [Content inventory, actual captures, source notes and validation](LEARNING-TRAIL-3.5.0.md).

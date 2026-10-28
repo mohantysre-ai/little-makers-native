@@ -1,0 +1,42 @@
+PASS: all 1200 modules solvable; 10814 rule/state checks.
+PASS: distinct tap/win PCM, attack envelope and bounded amplitude.
+PASS: 400 saved-state fixtures from native 2.0.0 load unchanged (all original 200 IDs).
+PASS: shared legacy/predictive Back routing for all native destinations; tap games allow scrolling and tactile gestures stay captured.
+{
+  "status": "PASS",
+  "checks": 2437,
+  "contrast_ratios": {
+    "dark/171b2d": 17.06,
+    "dark/262d43": 13.65,
+    "dark/343954": 11.29,
+    "dark/574491": 7.95,
+    "dark/167c6d": 5.07,
+    "dark/aa345e": 6.25,
+    "dark/876000": 5.67,
+    "light/f6f4ff": 13.27,
+    "light/ffffff": 14.43,
+    "light/ebe7fc": 11.94,
+    "light/e4ddfa": 11.01,
+    "light/bcece1": 11.15,
+    "light/f7c6d8": 9.64,
+    "light/f4e09f": 11.0
+  },
+  "scope": "Schema transactions, palette contrast and native source audit; no Android device execution"
+}
+PASS: native listing accuracy/limits, matching offline/HTML policy, predictive Back wiring, protected reset, backup exclusions and missing-identity/signing release guards.
+PASS: bounded camera, clamped delta, landmark routing, response decay and reduced-motion state.
+PASS: 1053 picture entries, 210 web episodes; 2736 asset/step checks; every story prop and branch has content.
+PASS: 100 portrait/landscape/pan combinations preserve aspect and image bounds.
+PASS: adaptive/round/themed icons, launch theme, internal opening screen and bounded offline background asset.
+3D shape drag, mismatch, snap, reset and repeat-reward guards passed
+PASS: immutable scene handoff, valid geometry, 41 explicit story prop mappings and fail-fast coverage
+PASS: all 210 scripts / 630 steps have explicit 3D model coverage; 41 prop assets; native game/studio wiring. Device rendering tested separately.
+PASS: guided rescue routes, collision/bounds, finite input, seed accounting, bridge traversal, saves, decor unlocks and parent reset
+PASS: internal adventure entry, existing learning navigation, parent reset integration, shared idempotent wallet and no new permissions
+PASS 1839 original quest checks: all 72 stages, adaptive tiers, unique choices, balance solutions, safe robot routes, bounds and replay guards
+PASS: internal quest entry, native mesh/lifecycle/theme/rewards, parent reset and offline speech guards
+PASS 1974 explorer checks: 24 lessons, 38 reading tasks, 48 story routes, 24 solvable seven-piece boards, 12 build goals, 24 distinct map links, tracing, atomic saves and bounds
+PASS: six internal studios, native polygon meshes/tactile input, all-nine menu, real map completion links, parent reset and offline speech; no new permissions/external content
+PASS: five explicit village aliases never fall through to the legacy Home list; gameplay and parent destinations remain distinct
+PASS 2340 checks: 264 bounded activities, unique reward keys and choices, numeric reference cases, eight companions and all 210 distinct story pairs. Content is a starter trail, not a full curriculum.
+PASS 175 viewport combinations preserve uniform model proportions independently of normalized scene positioning.

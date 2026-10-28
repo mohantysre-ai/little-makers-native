@@ -39,7 +39,7 @@ final class PlaySceneSurface extends GLSurfaceView implements GLSurfaceView.Rend
  private void draw(Mesh mesh,float x,float y,float z,float sx,float sy,float sz,int color,float angle){
   Matrix.setIdentityM(model,0);Matrix.translateM(model,0,x,y,z);if(angle!=0)Matrix.rotateM(model,0,angle,0,pond?0:1,pond?1:0);Matrix.scaleM(model,0,sx,sy,sz);Matrix.multiplyMM(mvp,0,vp,0,model,0);
   for(int column=0;column<3;column++){float scale=column==0?sx:column==1?sy:sz;for(int row=0;row<3;row++)normalMatrix[column*3+row]=model[column*4+row]/(scale*scale);}GLES20.glUniformMatrix3fv(normalUniform,1,false,normalMatrix,0);GLES20.glUniformMatrix4fv(mvpUniform,1,false,mvp,0);GLES20.glUniformMatrix4fv(modelUniform,1,false,model,0);GLES20.glUniform3f(colorUniform,((color>>16)&255)/255f,((color>>8)&255)/255f,(color&255)/255f);
-  GLES20.glUniform1f(materialUniform,pond&&(color==0x204355||color==0x7ec6cd)?1:!pond&&(color==0x374b58||color==0xd7b58b)?2:0);GLES20.glUniform1f(timeUniform,time);mesh.data.position(0);GLES20.glVertexAttribPointer(posAttr,3,GLES20.GL_FLOAT,false,24,mesh.data);mesh.data.position(3);GLES20.glVertexAttribPointer(normalAttr,3,GLES20.GL_FLOAT,false,24,mesh.data);GLES20.glDrawArrays(GLES20.GL_TRIANGLES,0,mesh.count);
+  GLES20.glUniform1f(materialUniform,pond&&(color==0x204355||color==0x83aeb2)?1:!pond&&(color==0x374b58||color==0xd7b58b)?2:0);GLES20.glUniform1f(timeUniform,time);mesh.data.position(0);GLES20.glVertexAttribPointer(posAttr,3,GLES20.GL_FLOAT,false,24,mesh.data);mesh.data.position(3);GLES20.glVertexAttribPointer(normalAttr,3,GLES20.GL_FLOAT,false,24,mesh.data);GLES20.glDrawArrays(GLES20.GL_TRIANGLES,0,mesh.count);
  }
  private void ball(float x,float y,float z,float r,int color){draw(sphere,x,y,z,r,r,r,color,0);}
 
@@ -70,17 +70,24 @@ final class PlaySceneSurface extends GLSurfaceView implements GLSurfaceView.Rend
   else draw(box,x,y,z,size*.82f,size*.82f,.30f,color,angle+12);
  }
  private void pond(float dt){
-  draw(sphere,0,0,-1.2f,5.5f,7,.4f,dark?0x204355:0x7ec6cd,0);
+  draw(sphere,0,0,-1.2f,5.5f,7,.4f,dark?0x204355:0x83aeb2,0);
   draw(sphere,0,-4.1f,-.65f,4.7f,1.3f,.12f,dark?0x55615c:0xe0cf9e,0);
   for(int i=0;i<11;i++){float x=-3.6f+i*.72f,y=-3.6f+(float)Math.sin(i*2)*.25f;draw(sphere,x,y,-.4f,.28f,.18f,.18f,i%2==0?0xb3b5a0:0x929c98,i*19);}
   for(int i=0;i<7;i++){float x=-3.6f+i*1.2f;for(int leaf=0;leaf<3;leaf++)draw(sphere,x+(leaf-1)*.13f+(reduced?0:(float)Math.sin(time*1.3f+i)*.07f),-3.2f+leaf*.23f,-.25f,.09f,.5f,.09f,0x4a9f86,0);}
   float dx=targetX-fishX,dy=targetY-fishY;float blend=reduced?1:1-(float)Math.exp(-dt*2.5f);fishX+=dx*blend;fishY+=dy*blend;
   if(Math.hypot(dx,dy)>.04)heading=dx<0?-1:1;if(heading==0)heading=1;
   float wag=reduced?0:(float)Math.sin(time*8)*.12f;
-  draw(sphere,fishX,fishY,.2f,.72f,.38f,.35f,0xf4ad59,0);
-  draw(cone,fishX-heading*.85f,fishY,.18f,.32f,.42f,.2f,0xf2ca76,90+wag*60);
-  draw(sphere,fishX-.05f,fishY-.34f+wag,.43f,.27f,.13f,.12f,0xf3ca88,20);
-  ball(fishX+heading*.38f,fishY+.12f,.53f,.10f,0xfff4dc);ball(fishX+heading*.41f,fishY+.12f,.61f,.048f,0x263849);
+  // Streamlined body, counter-shaded belly, forked moving tail and small lateral eye.
+  draw(sphere,fishX,fishY,.2f,.83f,.29f,.19f,0x9d9e6e,0);
+  draw(sphere,fishX+heading*.06f,fishY-.09f,.23f,.65f,.17f,.17f,0xd8d6bc,0);
+  draw(sphere,fishX+heading*.57f,fishY+.01f,.2f,.25f,.23f,.18f,0x9d9e6e,0);
+  for(int side=-1;side<=1;side+=2)draw(cone,fishX-heading*.91f,fishY+side*.13f,.19f,.26f,.19f,.035f,0x8a8e64,90+side*30+wag*60);
+  draw(cone,fishX-heading*.12f,fishY+.30f,.2f,.33f,.17f,.025f,0x878a61,180);
+  draw(sphere,fishX-heading*.1f,fishY-.26f,.2f,.27f,.06f,.035f,0xb0aa80,10);
+  draw(sphere,fishX+heading*.28f,fishY-.10f,.39f,.2f,.04f,.025f,0xa7a276,heading*(20+wag*30));
+  draw(sphere,fishX+heading*.4f,fishY,.38f,.018f,.16f,.012f,0x6b7662,heading*12);
+  ball(fishX+heading*.65f,fishY+.07f,.38f,.036f,0x202c2b);ball(fishX+heading*.66f,fishY+.08f,.41f,.009f,0xf1eddf);
+  draw(sphere,fishX+heading*.8f,fishY-.025f,.24f,.035f,.014f,.09f,0x636e5d,0);
   for(int i=0;i<5;i++){float y=-2.8f+(time*.45f+i*1.3f)%6.5f;ball(-2.7f+(float)Math.sin(y*2)*.15f,y,.25f,.045f+i%2*.025f,0xb9e6e1);}
   for(int ring=0;ring<2;ring++){float radius=reduced?.24f:.15f+(time*.5f+ring*.5f)%1;for(int j=0;j<24;j++){double a=j*Math.PI/12;ball(targetX+(float)Math.cos(a)*radius,targetY+(float)Math.sin(a)*radius,.7f,.025f,0xc5efdf);}}
  }
