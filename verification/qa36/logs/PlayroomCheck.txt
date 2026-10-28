@@ -1,0 +1,20 @@
+INSTRUMENTATION_STATUS: case=play-tab-launcher
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: case=all-nine-catalog
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: observed-studio=expected=0 intent=0 finishing=false identity=11676300
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: observed-studio=expected=1 intent=1 finishing=false identity=1527513
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: observed-studio=expected=2 intent=2 finishing=false identity=243707014
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: observed-studio=expected=3 intent=3 finishing=false identity=248584658
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: observed-studio=expected=4 intent=4 finishing=false identity=207162934
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: observed-studio=expected=5 intent=5 finishing=false identity=124214623
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: case=maker-world-from-play
+INSTRUMENTATION_STATUS_CODE: 1
+PASS 3 captures; 3.6 bottom-Play Adventures entry visible without scrolling; all nine catalog options present; six studio buttons launch the correct internal activities; Back returns to the same playroom
+

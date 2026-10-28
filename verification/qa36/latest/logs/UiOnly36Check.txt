@@ -1,0 +1,2 @@
+PASS live UI only; Hear selects an installed offline voice or shows unavailable fallback. Real light/dark mission controls fully visible on current viewport.
+

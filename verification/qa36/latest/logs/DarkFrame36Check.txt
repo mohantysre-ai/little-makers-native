@@ -1,0 +1,4 @@
+DIRECT_DARK_PASS
+finishing=false destroyed=false focus=true stage=1 frames stopped=false
+AFTER_REQUEST_PASS
+

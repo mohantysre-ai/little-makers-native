@@ -1,3 +1,7 @@
+# Little Makers 3.6.1: tested readability fixes
+
+See [functional QA, actual captures and realism limitations](QA-3.6.1.md).
+
 # Little Makers 3.6.0: readability and natural-form meshes
 
 See [changes and validation limits](READABILITY-3.6.0.md).

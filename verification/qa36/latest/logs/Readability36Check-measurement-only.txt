@@ -1,0 +1,2 @@
+PASS 14256 native answer layout checks: all 792 answer choices, three widths, three font scales, both themes; no missing text, ellipsis, or width/height clipping. Hear selects an installed offline voice or shows unavailable fallback. Real light/dark mission controls fully visible on current viewport.
+

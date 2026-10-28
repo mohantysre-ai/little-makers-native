@@ -4,7 +4,7 @@ import android.os.*;
 import android.content.*;
 import android.graphics.*;
 import java.io.*;
-import java.lang.reflect.*;
+import java.lang.reflect.*;import java.util.*;import java.util.concurrent.*;import java.util.concurrent.atomic.*;
 
 /** Separate instrumentation APK. Run on an isolated emulator, never a child's active profile. */
 public final class RenderCheck extends Instrumentation {
@@ -13,11 +13,12 @@ public final class RenderCheck extends Instrumentation {
  private Object field(Object target,String name)throws Exception{Field f=target.getClass().getDeclaredField(name);f.setAccessible(true);return f.get(target);}
  private void set(Object target,String name,Object value)throws Exception{Field f=target.getClass().getDeclaredField(name);f.setAccessible(true);f.set(target,value);}
  private void call(Object target,String name,Class<?>[]types,Object...args)throws Exception{Method m=target.getClass().getDeclaredMethod(name,types);m.setAccessible(true);m.invoke(target,args);}
- private void ui(Runnable r){runOnMainSync(r);waitForIdleSync();}
+ private void ui(Runnable r){java.util.concurrent.atomic.AtomicReference<Throwable>failure=new java.util.concurrent.atomic.AtomicReference<>();runOnMainSync(()->{try{r.run();}catch(Throwable e){failure.set(e);}});waitForIdleSync();if(failure.get()!=null)throw new AssertionError("UI operation failed",failure.get());}
  private void launch(String name){Intent i=new Intent().setClassName("com.littlemakers.village","com.littlemakers.village.nativeapp."+name).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);if(name.equals("MainActivity"))i.putExtra("destination","playroom");activity=startActivitySync(i);waitForIdleSync();}
- private Object stage(boolean game)throws Exception{return game?field(field(activity,"gameView"),"stage"):field(activity,"creativeStage");}
+ private Object stage(boolean game)throws Exception{if(game)return field(field(activity,"gameView"),"stage");Object scene=field(activity,"creativeStage");if(scene==null&&field(activity,"visualMenu")!=null)scene=field(field(activity,"visualMenu"),"surface");return scene;}
  private void rendered(boolean game)throws Exception{long until=SystemClock.uptimeMillis()+45000;while(SystemClock.uptimeMillis()<until){Object s=stage(game);if(s!=null&&((Long)field(s,"renderedFrames"))>=(getTargetContext().getSharedPreferences("family",0).getBoolean("reduce_motion",false)?1:2))return;SystemClock.sleep(100);}throw new AssertionError("No native mesh frames for "+activity.getClass().getName());}
- private void capture(String name)throws Exception{SystemClock.sleep(250);Bitmap b=getUiAutomation().takeScreenshot();if(b==null)throw new AssertionError("Screenshot unavailable");try(FileOutputStream out=new FileOutputStream(new File(output,name+".png"))){b.compress(Bitmap.CompressFormat.PNG,100,out);}b.recycle();Bundle progress=new Bundle();progress.putString("case",name);sendStatus(1,progress);passed++;}
+ private void checkGl(android.view.View v)throws Exception{if(v instanceof android.opengl.GLSurfaceView){CountDownLatch latch=new CountDownLatch(1);AtomicInteger error=new AtomicInteger(-1);((android.opengl.GLSurfaceView)v).queueEvent(()->{error.set(android.opengl.GLES20.glGetError());latch.countDown();});if(!latch.await(15,TimeUnit.SECONDS)||error.get()!=0)throw new AssertionError("GL error "+error.get());}if(v instanceof android.view.ViewGroup)for(int i=0;i<((android.view.ViewGroup)v).getChildCount();i++)checkGl(((android.view.ViewGroup)v).getChildAt(i));}
+ private void capture(String name)throws Exception{SystemClock.sleep(250);checkGl(activity.getWindow().getDecorView());Foreground36.require(this,activity);Bitmap b=getUiAutomation().takeScreenshot();if(b==null)throw new AssertionError("Screenshot unavailable");try(FileOutputStream out=new FileOutputStream(new File(output,name+".png"))){b.compress(Bitmap.CompressFormat.PNG,100,out);}b.recycle();Bundle progress=new Bundle();progress.putString("case",name);sendStatus(1,progress);passed++;}
  @Override public void onStart(){Bundle result=new Bundle();try{
   output=new File(getTargetContext().getFilesDir(),"render-check");output.mkdirs();launch("MainActivity");
   String[]kinds={"count","add","subtract","multiply","divide","shapes","colors","pattern","memory","sizes","trace","word","maze","robot","water","blocks","merge","rhythm","bridge","plan"};
@@ -33,6 +34,6 @@ public final class RenderCheck extends Instrumentation {
   for(String route:new String[]{"books","play","story","gallery"}){ui(()->{try{call(activity,"show",new Class[]{String.class},route);}catch(Exception e){throw new RuntimeException(e);}});rendered(false);capture("shelf-"+route);}
   ui(()->{try{set(activity,"story",0);set(activity,"storyStep",0);call(activity,"storyScene",new Class[0]);call(field(activity,"canvas"),"placeStory",new Class[0]);((android.widget.Button)field(activity,"storyAction")).performClick();if(((Integer)field(activity,"storyStep"))!=1)throw new AssertionError("Story placement did not advance");}catch(Exception e){throw new RuntimeException(e);}});rendered(false);capture("story-placement-next");
   ui(()->activity.finish());launch("OpeningActivity");boolean visible=false;long until=SystemClock.uptimeMillis()+45000;while(SystemClock.uptimeMillis()<until){Object opening=field(activity,"openingStage");if(opening!=null&&((Long)field(opening,"renderedFrames"))>0){visible=true;break;}SystemClock.sleep(100);}if(!visible)throw new AssertionError("Opening did not render meshes");capture("opening-3d");
-  ui(()->activity.finish());result.putInt("passed",passed);result.putString("stream","PASS "+passed+" mesh-rendered screens; all 630 story-step frames built\n");finish(Activity.RESULT_OK,result);
+  ui(()->activity.finish());result.putInt("passed",passed);result.putString("stream","PASS "+passed+" mesh-rendered screens with GL_NO_ERROR; all 630 story-step frames built\n");finish(Activity.RESULT_OK,result);
  }catch(Throwable e){result.putString("stream","FAIL after "+passed+": "+android.util.Log.getStackTraceString(e));finish(Activity.RESULT_CANCELED,result);}}
 }

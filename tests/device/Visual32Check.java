@@ -6,7 +6,7 @@ public final class Visual32Check extends Instrumentation {
  @Override public void onCreate(Bundle b){super.onCreate(b);start();}
  private Object field(Object o,String n)throws Exception{Field f=o.getClass().getDeclaredField(n);f.setAccessible(true);return f.get(o);}
  private Object call(Object o,String n,Class<?>[]t,Object...a)throws Exception{Method m=o.getClass().getDeclaredMethod(n,t);m.setAccessible(true);return m.invoke(o,a);}
- private void ui(Runnable r){runOnMainSync(r);waitForIdleSync();}
+ private void ui(Runnable r){java.util.concurrent.atomic.AtomicReference<Throwable>failure=new java.util.concurrent.atomic.AtomicReference<>();runOnMainSync(()->{try{r.run();}catch(Throwable e){failure.set(e);}});waitForIdleSync();if(failure.get()!=null)throw new AssertionError("UI operation failed",failure.get());}
  private void invoke(String n,Class<?>[]t,Object...a){ui(()->{try{call(activity,n,t,a);}catch(Exception e){throw new RuntimeException(e);}});}
  private Button find(View v,String s){if(v instanceof Button&&s.equals(((Button)v).getText().toString()))return(Button)v;if(v instanceof ViewGroup)for(int i=0;i<((ViewGroup)v).getChildCount();i++){Button b=find(((ViewGroup)v).getChildAt(i),s);if(b!=null)return b;}return null;}
  private void click(String s){ui(()->{Button b=find(activity.getWindow().getDecorView(),s);if(b==null)throw new AssertionError("Missing picture target "+s);b.performClick();});}

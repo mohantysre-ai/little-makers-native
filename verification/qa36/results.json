@@ -1,0 +1,57 @@
+{
+  "version": "3.6.1-native",
+  "versionCode": 34,
+  "min_sdk": 24,
+  "target_sdk": 36,
+  "apk_sha256": "e9a283b509dab175322f6d0400754ddf785fe6a58cab0dbccd40607900afed87",
+  "apk_bytes": 19499093,
+  "overall": "PASS_WITH_SCOPE_LIMITS",
+  "realism": "PARTIAL — stylized meshes, 2D backdrops and illustrations remain; not photorealistic",
+  "rules": "PASS — full tools/test.sh suite",
+  "android24": {
+    "device": "AOSP x86_64, 480x800, 160dpi, software TCG/SwiftShader",
+    "tests": {
+      "RenderCheck": "PASS 36 screens, GL_NO_ERROR, 630 story frame constructions",
+      "QuestCheck": "PASS 8 captures",
+      "StudioCheck": "PASS 10 captures",
+      "AdventureCheck": "PASS 9 captures",
+      "Hud34Check": "PASS 6 captures",
+      "Visual32Check": "PASS 7 captures",
+      "Motion33Check": "PASS 3 captures; audio-queue UI burst 4ms",
+      "PlayroomCheck": "PASS 3 captures on rerun with 60-second harness timeout",
+      "Creative36Check": "PASS 1658 assertions, 6 captures",
+      "Parent36Check": "PASS 40 assertions",
+      "Readability36Check": "PASS 14256 answer layout combinations; normal portrait, small/150% font, actual landscape rotation"
+    }
+  },
+  "android36": {
+    "device": "AOSP x86_64, 412x915, 160dpi, software TCG/SwiftShader",
+    "tests": {
+      "RenderCheck": "PASS 36 screens with active-window/focus and GL guards",
+      "Trail35Check": "PASS 9 captures with foreground/focus guard",
+      "UiOnly36Check": "PASS focused light/dark scenes, rendered-frame and nonblank-pixel checks, visible footer and Hear fallback",
+      "DarkFrame36Check": "DIRECT_DARK_PASS; original renderer, one frame, focus true; AFTER_REQUEST_PASS",
+      "ReadabilityMatrix": "PASS 14256 offscreen widget measurements; initial obscured UI captures excluded"
+    }
+  },
+  "corrected_product_issues": [
+    "narrow answer text overflow",
+    "mixed icon/text footer baseline clipping",
+    "oversized portrait scene crowding answer cards",
+    "landscape school-model cropping"
+  ],
+  "rejected_preliminary_results": [
+    "cold-boot OS ANR-covered captures",
+    "20-second Playroom handoff timeout; rerun passed",
+    "landscape capture API failure under a logical size override; actual rotation rerun passed",
+    "rapid same-component task reuse in instrumentation; fresh tasks and controlled direct launch pass"
+  ],
+  "limitations": [
+    "No physical ARM/Pixel/GPU/FPS/thermal certification",
+    "No exhaustive Android/OEM/device matrix",
+    "Large fonts and short screens can require scrolling",
+    "No complete manual screen-reader or child-usability study",
+    "No audible TTS/sound or tactile quality certification",
+    "Not Play release/signing/compliance certification"
+  ]
+}

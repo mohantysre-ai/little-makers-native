@@ -1,0 +1,6 @@
+FAIL after 0 labels: java.lang.AssertionError: App is obscured; active window package=android
+	at com.littlemakers.village.rendercheck.Foreground36.require(Foreground36.java:5)
+	at com.littlemakers.village.rendercheck.Readability36Check.shot(Readability36Check.java:7)
+	at com.littlemakers.village.rendercheck.Readability36Check.onStart(Readability36Check.java:20)
+	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2597)
+

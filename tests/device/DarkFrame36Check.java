@@ -1,0 +1,11 @@
+package com.littlemakers.village.rendercheck;
+import android.app.*;import android.os.*;import android.content.*;import android.graphics.*;import java.io.*;
+/** Controlled first-open diagnostic: no light-to-dark task reuse. */
+public final class DarkFrame36Check extends Readability36Check {
+ @Override public void onStart(){Bundle result=new Bundle();StringBuilder evidence=new StringBuilder();try{out=new File(getTargetContext().getFilesDir(),"darkframe36-check");out.mkdirs();getTargetContext().getSharedPreferences("family",0).edit().putString("theme","dark").putBoolean("reduce_motion",true).commit();a=startActivitySync(new Intent().setClassName("com.littlemakers.village","com.littlemakers.village.nativeapp.SchoolTrailActivity").addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK));waitForIdleSync();invoke("subjects",new Class[]{int.class},10);invoke("missions",new Class[]{int.class},2);invoke("play",new Class[]{int.class,boolean.class},5,false);try{shot("dark-direct");evidence.append("DIRECT_DARK_PASS\n");}catch(Throwable failure){evidence.append("DIRECT_DARK_FAIL ").append(failure).append('\n');shot("failure");}
+ Object stage=field(a,"stage");evidence.append("finishing=").append(a.isFinishing()).append(" destroyed=").append(a.isDestroyed()).append(" focus=").append(a.hasWindowFocus()).append(" stage=").append(stage==null?"null":field(stage,"renderedFrames")+" frames stopped="+field(stage,"stopped")).append('\n');
+ try(android.os.ParcelFileDescriptor fd=getUiAutomation().executeShellCommand("screencap -p");InputStream in=new android.os.ParcelFileDescriptor.AutoCloseInputStream(fd)){Bitmap bitmap=BitmapFactory.decodeStream(in);if(bitmap!=null){try(FileOutputStream f=new FileOutputStream(new File(out,"shell.png"))){bitmap.compress(Bitmap.CompressFormat.PNG,100,f);}bitmap.recycle();}}
+ if(stage!=null){((android.opengl.GLSurfaceView)stage).requestRender();SystemClock.sleep(700);try{shot("after-request");evidence.append("AFTER_REQUEST_PASS\n");}catch(Throwable failure){evidence.append("AFTER_REQUEST_FAIL ").append(failure).append('\n');}}
+ ui(a::finish);result.putString("stream",evidence.toString());finish(Activity.RESULT_OK,result);
+ }catch(Throwable failure){result.putString("stream",evidence+"DIAGNOSTIC_ERROR "+android.util.Log.getStackTraceString(failure));finish(Activity.RESULT_CANCELED,result);}}
+}

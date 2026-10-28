@@ -6,7 +6,7 @@ public final class QuestCheck extends Instrumentation {
  @Override public void onCreate(Bundle b){super.onCreate(b);start();}
  Object field(Object o,String n)throws Exception{Field f=o.getClass().getDeclaredField(n);f.setAccessible(true);return f.get(o);}
  Object call(Object o,String n,Class<?>[]types,Object...args)throws Exception{Method m=o.getClass().getDeclaredMethod(n,types);m.setAccessible(true);return m.invoke(o,args);}
- void ui(Runnable r){runOnMainSync(r);waitForIdleSync();}
+ void ui(Runnable r){java.util.concurrent.atomic.AtomicReference<Throwable>failure=new java.util.concurrent.atomic.AtomicReference<>();runOnMainSync(()->{try{r.run();}catch(Throwable e){failure.set(e);}});waitForIdleSync();if(failure.get()!=null)throw new AssertionError("UI operation failed",failure.get());}
  void invoke(String name,Class<?>[]types,Object...args){ui(()->{try{call(activity,name,types,args);}catch(Exception e){throw new RuntimeException(e);}});}
  Button find(View v,String label){if(v instanceof Button&&label.equals(((Button)v).getText().toString()))return(Button)v;if(v instanceof ViewGroup)for(int i=0;i<((ViewGroup)v).getChildCount();i++){Button b=find(((ViewGroup)v).getChildAt(i),label);if(b!=null)return b;}return null;}
  void click(String s){ui(()->{Button b=find(activity.getWindow().getDecorView(),s);if(b==null)throw new AssertionError("Button missing: "+s);b.performClick();});}

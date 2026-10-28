@@ -1,0 +1,16 @@
+INSTRUMENTATION_STATUS: case=toy-playroom
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: case=actual-village
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: case=toy-adventures
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: case=live-fish
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: case=picture-puzzles
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: case=maze-garden
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: case=toy-dark
+INSTRUMENTATION_STATUS_CODE: 1
+PASS 7 visual flows: animated mesh menus, real Village and legacy aliases, nine direct adventure targets, native studio entry, fish touch motion, illustrated puzzle catalog, maze movement, white dark labels and reduced-motion idle
+

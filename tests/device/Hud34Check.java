@@ -5,7 +5,7 @@ public final class Hud34Check extends Instrumentation {
  Activity a;File out;int captures;
  Object field(Object o,String n)throws Exception{Field f=o.getClass().getDeclaredField(n);f.setAccessible(true);return f.get(o);}
  Object call(Object o,String n,Class<?>[]types,Object...args)throws Exception{Method m=o.getClass().getDeclaredMethod(n,types);m.setAccessible(true);return m.invoke(o,args);}
- void ui(Runnable r){runOnMainSync(r);waitForIdleSync();}
+ void ui(Runnable r){java.util.concurrent.atomic.AtomicReference<Throwable>failure=new java.util.concurrent.atomic.AtomicReference<>();runOnMainSync(()->{try{r.run();}catch(Throwable e){failure.set(e);}});waitForIdleSync();if(failure.get()!=null)throw new AssertionError("UI operation failed",failure.get());}
  interface Condition{boolean ok()throws Exception;}
  void waitFor(Condition c,String label)throws Exception{long end=SystemClock.uptimeMillis()+30000;while(SystemClock.uptimeMillis()<end){if(c.ok())return;SystemClock.sleep(80);}throw new AssertionError(label);}
  View desc(View v,String label){if(v.getContentDescription()!=null&&label.contentEquals(v.getContentDescription()))return v;if(v instanceof ViewGroup)for(int i=0;i<((ViewGroup)v).getChildCount();i++){View found=desc(((ViewGroup)v).getChildAt(i),label);if(found!=null)return found;}return null;}
