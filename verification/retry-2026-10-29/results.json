@@ -1,0 +1,24 @@
+{
+  "date": "2026-10-29",
+  "app_version": "3.6.1-native",
+  "tested_source_commit": "67fe865b283f1171a678b86718fd246db6edc41b",
+  "fresh_run": {
+    "command": "JAVA_HOME=<JDK21> bash tools/test.sh",
+    "exit_code": 0,
+    "result": "PASS"
+  },
+  "device_runs_this_retry": "NOT RUN \u2014 prior emulator/toolchain state was not retained",
+  "historical_device_evidence": "verification/qa36/results.json; not represented as a new device run",
+  "realism": "INCOMPLETE \u2014 procedural meshes, 2D backdrops and illustrations remain",
+  "bundled_assets_audit": {
+    "rigged_model_files_glb_gltf_fbx_obj": 0,
+    "video_files_mp4_webm": 0,
+    "note": "Native procedural geometry exists in Java. These counts do not imply absence of 3D rendering."
+  },
+  "app_changes": "None; no version bump or new APK generated",
+  "remaining_validation": [
+    "physical Android/ARM/GPU performance and thermal behavior",
+    "audible narration/sound and physical haptics",
+    "full Android/OEM/device matrix and manual child/accessibility usability"
+  ]
+}
