@@ -1,3 +1,5 @@
+> **Publication status:** a saved 3.7.0 development APK is available, but its matching source push was interrupted. The app source in this branch remains 3.6.1. See [recovery record and recorded test scope](RECOVERY-3.7.0.md).
+
 # Little Makers 3.6.1: tested readability fixes
 
 See [functional QA, actual captures and realism limitations](QA-3.6.1.md).
