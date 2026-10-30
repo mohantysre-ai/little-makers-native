@@ -1,0 +1,9 @@
+warning: [options] source value 8 is obsolete and will be removed in a future release
+warning: [options] target value 8 is obsolete and will be removed in a future release
+warning: [options] To suppress warnings about obsolete options, use -Xlint:-options.
+Note: Some input files use or override a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+Note: /workspace/lm-cinematic/tests/device/Visual32Check.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+3 warnings
+Install app debug APK and render-check.apk on an isolated emulator, then run adb shell am instrument -w com.littlemakers.village.rendercheck/.RenderCheck

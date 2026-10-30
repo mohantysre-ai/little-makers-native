@@ -1,0 +1,35 @@
+{
+  "whole_app_photorealism_complete": false,
+  "new_cinematic_video_clips": 0,
+  "existing_films": 1,
+  "existing_film_clips": 4,
+  "existing_story_entries_migrated": 210,
+  "theater_rendering": "Native real-time meshes with bounded perspective camera; not encoded films",
+  "remaining": [
+    {
+      "section": "Story films",
+      "status": "blocked",
+      "gap": "The 210 catalog entries are not converted to produced MP4 films. Requires finished scene footage, narration and sound production. Connected video service reports 0 credits / free plan; no new job was submitted."
+    },
+    {
+      "section": "Worlds and landmarks",
+      "status": "incomplete",
+      "gap": "Procedural/stylized vegetation, buildings, islands, terrain and some flat backdrops remain."
+    },
+    {
+      "section": "Characters",
+      "status": "incomplete",
+      "gap": "Rabbit, fox and bear have new original surface meshes and coat shading. Other companions retain stylized geometry. This is not complete photorealistic character art."
+    },
+    {
+      "section": "Art studios",
+      "status": "intentional_2d_art_inside_3d_board",
+      "gap": "Coloring pages, notebook ink, tracing and dot lines remain 2D artwork on a rendered board. No fabricated replacement picture count is claimed."
+    },
+    {
+      "section": "Physical device validation",
+      "status": "unverified",
+      "gap": "Software-emulator checks do not certify hardware frame rate, audible voice/haptics, or all Android releases."
+    }
+  ]
+}

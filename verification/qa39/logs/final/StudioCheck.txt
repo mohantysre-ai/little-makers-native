@@ -1,0 +1,22 @@
+INSTRUMENTATION_STATUS: case=discovery-trail
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: case=letter-tracing
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: case=letter-word
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: case=friends-branch
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: case=friends-ending
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: case=shape-builders
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: case=maker-world
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: case=studio-restored
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: case=learning-islands
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: case=studio-dark
+INSTRUMENTATION_STATUS_CODE: 1
+PASS 10 studio captures: all-nine entry, real tracing/rotation/drag, words, branching persistence, world edits/undo/save, shared rewards/idempotency, actual map stage launches/return and dark reduced-motion meshes
+

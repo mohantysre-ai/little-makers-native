@@ -1,0 +1,16 @@
+INSTRUMENTATION_STATUS: case=film-shelf
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: case=moon-playing
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: case=choose-path
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: case=gentle-question-recovery
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: case=discovery-complete
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: case=dark-completed
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: case=media-error-recovery
+INSTRUMENTATION_STATUS_CODE: 1
+PASS 59 cinema checks; 7 captures. Real bundled MP4 preparation/frame/time/completion, no autoplay, pause/recreation/resume, route/quiz gating, shared first-clear/replay rewards, dark labels/reduced mode, actual decoder-error retry, and local Story shelf Back. Muted software emulator, not audio/haptic/physical FPS certification.
+

@@ -1,0 +1,9 @@
+INSTRUMENTATION_STATUS: case=toy-playroom
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: case=actual-village
+INSTRUMENTATION_STATUS_CODE: 1
+FAIL after 2: java.lang.AssertionError: Did not return to CreativeActivity
+	at com.littlemakers.village.rendercheck.Visual32Check.finishTo(Visual32Check.java:16)
+	at com.littlemakers.village.rendercheck.Visual32Check.onStart(Visual32Check.java:22)
+	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:1932)
+

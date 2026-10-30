@@ -1,0 +1,5 @@
+FAIL after 886: java.lang.AssertionError: No visible GL frames
+	at com.littlemakers.village.rendercheck.Theater39Check.rendered(Theater39Check.java:17)
+	at com.littlemakers.village.rendercheck.Theater39Check.onStart(Theater39Check.java:32)
+	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:1932)
+

@@ -1,0 +1,2 @@
+PASS 883 theater checks: live shelf, perspective/material GL, projected object tap, guarded scene progression, recreation, shared idempotent reward, motion pause/resume, white dark labels, reduced motion, all 210 story frames and last-page navigation. Software emulator; not photorealism or physical FPS certification.
+

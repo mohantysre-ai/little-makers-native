@@ -1,0 +1,2 @@
+PASS immersive visible world, six accessible animated toy targets, live frames, queued walking, learning-trail routing and dark reduced-motion layout; 3 captures. Audio burst UI elapsed 4ms. No physical-device FPS certification.
+

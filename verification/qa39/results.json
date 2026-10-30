@@ -1,0 +1,108 @@
+{
+  "version": "3.9.0-native",
+  "version_code": 37,
+  "package": "com.littlemakers.village",
+  "minimum_sdk": 24,
+  "compile_target_sdk": 36,
+  "apk_bytes": 26725298,
+  "apk_sha256": "0166a9575590c0301c548c143970cd7ba6f679864e55e5def77801e7544008cb",
+  "signer_certificate_sha256": "5413e2b4d3ad26799fbf849d16c9ea1e1fe9b1c5f0734d9180195dfea79f9555",
+  "apk_type": "debug",
+  "apk_library_id": "libfile_2583f5b353d48191804171d58db4317d",
+  "api24": {
+    "environment": "480x800, density160, TCG/SwiftShader software emulator, muted; disposable test data",
+    "passed_suites": 14,
+    "suites": [
+      {
+        "name": "AdventureCheck",
+        "passed": true,
+        "log": "logs/final/AdventureCheck.txt"
+      },
+      {
+        "name": "Cinema38Check",
+        "passed": true,
+        "log": "logs/final/Cinema38Check.txt"
+      },
+      {
+        "name": "Creative36Check",
+        "passed": true,
+        "log": "logs/final/Creative36Check.txt"
+      },
+      {
+        "name": "Hud34Check",
+        "passed": true,
+        "log": "logs/final/Hud34Check.txt"
+      },
+      {
+        "name": "Motion33Check",
+        "passed": true,
+        "log": "logs/final/Motion33Check.txt"
+      },
+      {
+        "name": "Parent36Check",
+        "passed": true,
+        "log": "logs/final/Parent36Check.txt"
+      },
+      {
+        "name": "PlayroomCheck",
+        "passed": true,
+        "log": "logs/final/PlayroomCheck.txt"
+      },
+      {
+        "name": "QuestCheck",
+        "passed": true,
+        "log": "logs/final/QuestCheck.txt"
+      },
+      {
+        "name": "Readability36Check",
+        "passed": true,
+        "log": "logs/final/Readability36Check.txt"
+      },
+      {
+        "name": "RenderCheck",
+        "passed": true,
+        "log": "logs/final/RenderCheck.txt"
+      },
+      {
+        "name": "StudioCheck",
+        "passed": true,
+        "log": "logs/final/StudioCheck.txt"
+      },
+      {
+        "name": "Theater39Check",
+        "passed": true,
+        "log": "logs/final/Theater39Check.txt"
+      },
+      {
+        "name": "Trail35Check",
+        "passed": true,
+        "log": "logs/final/Trail35Check.txt"
+      },
+      {
+        "name": "Visual32Check",
+        "passed": true,
+        "log": "logs/final/Visual32Check.txt"
+      }
+    ]
+  },
+  "host_checks": "logs/rules-final.txt",
+  "story_entries_migrated": 210,
+  "theater_device_checks": 889,
+  "story_frames_constructed": 840,
+  "existing_scripted_story_steps": 630,
+  "new_original_wildlife_species": 3,
+  "whole_app_photorealism_complete": false,
+  "new_prerecorded_films": 0,
+  "total_prerecorded_films": 1,
+  "total_distinct_film_clips": 4,
+  "video_service_status": "Read-only balance: zero credits, free plan. No new job submitted.",
+  "api36_device_validation": "Not run for 3.9; remains unverified. Target SDK 36 is not a compatibility test.",
+  "sections": "section-inventory.json",
+  "production_gaps": "production-gaps.json",
+  "limits": [
+    "Not a hardware FPS/audio/haptic certification",
+    "Not every catalog level was manually played",
+    "Not a full photorealism conversion",
+    "Not a Play release or policy approval"
+  ]
+}

@@ -1,3 +1,13 @@
+# Little Makers 3.9.0 — interactive 3D Story Theater
+
+Story Tree now opens a real-time perspective theater for the existing 210 catalog entries. Touch a story object, help a friend, hear the caption using an installed offline voice, and choose an ending. The original drag-and-place mode is in Story options. Rabbit, fox and bear story meshes use original anatomical surfaces and coat shading. Motion can be paused; parent reduced motion is respected.
+
+All 14 Android 7/API 24 device suites and the host checks passed on the final 3.9 build. The [54-section coverage map](verification/qa39/section-inventory.json) records actual suite coverage and remaining visual gaps.
+
+[Changes, actual captures, validation and production limits](STORY-THEATER-3.9.0.md). Native Android Java/Canvas/OpenGL ES; API 24+, target SDK 36.
+
+**Art/video scope:** these 210 entries are interactive rendered scenes, not 210 newly produced films. Discovery cinema still contains one Moon film with four clips. Whole-app photorealism and the remaining cinematic film production are incomplete; [the production gap inventory](verification/qa39/production-gaps.json) records the work remaining.
+
 # Little Makers 3.8.0 — offline cinema and textured native 3D
 
 Native Android Java/Canvas/OpenGL ES app, API 24+, targeting SDK 36. This release adds one interactive Moon film (four bundled video clips, two discovery paths), shared material textures in six 3D renderers, an anatomical swimming fish mesh and sculpted clay normals.
