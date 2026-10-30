@@ -1,0 +1,18 @@
+INSTRUMENTATION_STATUS: case=guardian-adaptive
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: case=guardian-win
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: case=balance-weights
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: case=balance-win
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: case=robot-clue
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: case=robot-win
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: case=robot-restored
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: case=quest-dark-reduced
+INSTRUMENTATION_STATUS_CODE: 1
+PASS 8 quest device checks: adaptive answers, balance, robot sequence/undo/collision, three wallet awards, idempotency, recreation and dark reduced-motion meshes
+

@@ -1,0 +1,14 @@
+INSTRUMENTATION_STATUS: case=clay-sculpted
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: case=clay-restored
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: case=shapes-complete
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: case=kept-gallery
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: case=dots-complete
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: case=texture-revealed
+INSTRUMENTATION_STATUS_CODE: 1
+PASS 1658 creative checks: real clay Pull/Flatten/Roll/Rotate input, bounded finite vertices, saved geometry restored, real shape drags, accessible matching, first-clear/replay rewards, paint/undo/brush/save/gallery, all 12 dot touches, texture sweeping and GL_NO_ERROR.
+

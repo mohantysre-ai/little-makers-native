@@ -1,8 +1,12 @@
-# Little Makers 3.8.0 — cinema and textured 3D (validation in progress)
+# Little Makers 3.8.0 — offline cinema and textured native 3D
 
-This working branch contains the new native offline branching-film player, four real lunar visualization clips in one film, original bundled material textures on six 3D renderers, reconstructed shared anatomical fish meshes and surface-derived clay normals. Device validation is in progress. This is not a completed whole-app photorealistic asset replacement.
+Native Android Java/Canvas/OpenGL ES app, API 24+, targeting SDK 36. This release adds one interactive Moon film (four bundled video clips, two discovery paths), shared material textures in six 3D renderers, an anatomical swimming fish mesh and sculpted clay normals.
 
-> **Publication status:** a saved 3.7.0 development APK is available, but its matching source push was interrupted. The app source in this branch remains 3.6.1. See [recovery record and recorded test scope](RECOVERY-3.7.0.md).
+**Scope:** the entire app is not photorealistic. Existing stylized characters, 2D drawing artwork and 210 scripted stories remain. See [3.8 changes, evidence and remaining work](CINEMA-3.8.0.md) and the [53-section inventory](verification/qa38/section-inventory.json).
+
+Android 7/API 24: all 13 named device suites passed, including actual MP4 decoding and shared rewards. Android 16/API 36 validation is unverified because its software emulator did not complete a usable boot. No physical-device FPS, audible sound/haptics or Play approval claim is made.
+
+Source and bundled media for this 3.8 release are published together. The earlier [3.7 recovery record](RECOVERY-3.7.0.md) remains historical.
 
 # Little Makers 3.6.1: tested readability fixes
 

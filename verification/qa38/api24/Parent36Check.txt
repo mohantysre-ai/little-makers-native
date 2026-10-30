@@ -1,0 +1,2 @@
+PASS 41 parent checks: mismatched/correct PIN setup, salted hash storage, wrong/correct unlock, theme/sound/motion preferences, typed reset protection, database/inventory/draft/creation/prefs reset and retained PIN/settings, local privacy destination. Disposable profile only.
+

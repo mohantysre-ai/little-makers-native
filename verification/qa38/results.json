@@ -1,0 +1,89 @@
+{
+  "version": "3.8.0-native",
+  "version_code": 36,
+  "apk_bytes": 26713010,
+  "apk_sha256": "1d4bdaa7c41e8827c0226f4ae8a108b57aaae8884179eee6544ec288b42e922a",
+  "minimum_api": 24,
+  "target_api": 36,
+  "api24": {
+    "environment": "480x800 software emulator, TCG/SwiftShader, muted",
+    "suites": [
+      {
+        "suite": "RenderCheck",
+        "pass": true
+      },
+      {
+        "suite": "Creative36Check",
+        "pass": true
+      },
+      {
+        "suite": "Hud34Check",
+        "pass": true
+      },
+      {
+        "suite": "Trail35Check",
+        "pass": true
+      },
+      {
+        "suite": "Visual32Check",
+        "pass": true
+      },
+      {
+        "suite": "AdventureCheck",
+        "pass": true
+      },
+      {
+        "suite": "QuestCheck",
+        "pass": true
+      },
+      {
+        "suite": "StudioCheck",
+        "pass": true
+      },
+      {
+        "suite": "Motion33Check",
+        "pass": true
+      },
+      {
+        "suite": "PlayroomCheck",
+        "pass": true
+      },
+      {
+        "suite": "Readability36Check",
+        "pass": true
+      },
+      {
+        "suite": "Parent36Check",
+        "pass": true
+      },
+      {
+        "suite": "Cinema38Check",
+        "pass": true,
+        "checks": 59,
+        "log": "logs/cinema-final-api24.txt"
+      }
+    ]
+  },
+  "api36": {
+    "status": "unverified",
+    "reason": "Software emulator blank before usable boot; no app tests claimed."
+  },
+  "host_suite": "logs/rules-final.txt",
+  "photorealism_complete": false,
+  "cinematic_films": 1,
+  "unique_video_clips": 4,
+  "unique_video_seconds": 32,
+  "paths": 2,
+  "remaining_scripted_stories": 210,
+  "section_inventory": "section-inventory.json",
+  "limits": [
+    "No physical GPU/FPS measurement",
+    "No audible narration/haptics certification",
+    "Not a Play policy certification",
+    "No full-app photorealistic asset replacement"
+  ],
+  "final_apk_rechecks": [
+    "logs/cinema-final-api24.txt",
+    "logs/render-final-api24.txt"
+  ]
+}

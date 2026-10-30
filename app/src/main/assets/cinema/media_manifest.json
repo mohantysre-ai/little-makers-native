@@ -10,7 +10,8 @@
     "usage_guidelines": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
     "credit": "NASA\u2019s Scientific Visualization Studio; visualization by Ernie Wright, produced/edited by David Ladd; LRO data.",
     "edits": "Short excerpts, rescaled/transcoded H.264, soundtrack excluded. No NASA logo or identifiable person included. Used for factual education; no endorsement implied.",
-    "media_type": "Scientific 3D visualization from lunar data, not live camera footage or AI-generated wildlife."
+    "media_type": "Scientific 3D visualization from lunar data, not live camera footage or AI-generated wildlife.",
+    "sha256": "ee83cfdda26cbe854b80fb1ce6c0aa1cfafc37207f9be3287994774d5209c023"
   },
   "clips": [
     {

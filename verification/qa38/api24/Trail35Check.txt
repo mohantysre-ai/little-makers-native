@@ -1,0 +1,20 @@
+INSTRUMENTATION_STATUS: case=eight-companions
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: case=class-ten-worlds
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: case=crystal-maths
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: case=bridge-built
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: case=science-launch
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: case=story-cast
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: case=story-reaction
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: case=paint-regression
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: case=trail-dark
+INSTRUMENTATION_STATUS_CODE: 1
+PASS 9 captures: actual album launch, eight distinct original companions, Class 10 subjects, draggable answers and built bridge, saved/idempotent school rewards, renderer reuse, words and science outcomes, local Back hierarchy, varied story cast and placement reactions, story-shelf Back, paint texture/VBO regression, white dark prompt and reduced-motion idle. Android API 24 software emulator; no physical FPS certification.
+

@@ -1,0 +1,8 @@
+INSTRUMENTATION_STATUS: case=film-shelf
+INSTRUMENTATION_STATUS_CODE: 1
+FAIL after 2: java.lang.AssertionError: offline MP4 ready
+	at com.littlemakers.village.rendercheck.Cinema38Check.waitFor(Cinema38Check.java:13)
+	at com.littlemakers.village.rendercheck.Cinema38Check.ready(Cinema38Check.java:19)
+	at com.littlemakers.village.rendercheck.Cinema38Check.onStart(Cinema38Check.java:26)
+	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:1932)
+

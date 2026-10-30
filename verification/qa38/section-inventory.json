@@ -1,0 +1,526 @@
+{
+  "scope": "Section-level functional/render coverage map. Suite outcomes live in results.json; listing a suite does not assert it passed. No claim that every level was manually played or every scene is photorealistic.",
+  "sections": [
+    {
+      "section": "opening",
+      "rendering": "native_3d_with_materials",
+      "verification_suites": [
+        "RenderCheck",
+        "Visual32Check",
+        "Hud34Check",
+        "AdventureCheck",
+        "Motion33Check"
+      ],
+      "photorealism_complete": false,
+      "remaining_visual_gap": "Procedural/stylized character or environment meshes remain; no complete high-fidelity rigged asset replacement."
+    },
+    {
+      "section": "creative-village",
+      "rendering": "native_3d_with_materials",
+      "verification_suites": [
+        "RenderCheck",
+        "Visual32Check",
+        "Hud34Check",
+        "AdventureCheck",
+        "Motion33Check"
+      ],
+      "photorealism_complete": false,
+      "remaining_visual_gap": "Procedural/stylized character or environment meshes remain; no complete high-fidelity rigged asset replacement."
+    },
+    {
+      "section": "wonder-isles",
+      "rendering": "native_3d_with_materials",
+      "verification_suites": [
+        "RenderCheck",
+        "Visual32Check",
+        "Hud34Check",
+        "AdventureCheck",
+        "Motion33Check"
+      ],
+      "photorealism_complete": false,
+      "remaining_visual_gap": "Procedural/stylized character or environment meshes remain; no complete high-fidelity rigged asset replacement."
+    },
+    {
+      "section": "aquarium",
+      "rendering": "native_3d_with_materials",
+      "verification_suites": [
+        "RenderCheck",
+        "Visual32Check",
+        "Hud34Check",
+        "AdventureCheck",
+        "Motion33Check"
+      ],
+      "photorealism_complete": false,
+      "remaining_visual_gap": "Procedural/stylized character or environment meshes remain; no complete high-fidelity rigged asset replacement."
+    },
+    {
+      "section": "wardrobe",
+      "rendering": "native_3d_with_materials",
+      "verification_suites": [
+        "RenderCheck",
+        "Visual32Check",
+        "Hud34Check",
+        "AdventureCheck",
+        "Motion33Check"
+      ],
+      "photorealism_complete": false,
+      "remaining_visual_gap": "Procedural/stylized character or environment meshes remain; no complete high-fidelity rigged asset replacement."
+    },
+    {
+      "section": "album",
+      "rendering": "native_2d_ui",
+      "verification_suites": [
+        "Hud34Check",
+        "Parent36Check"
+      ],
+      "photorealism_complete": false,
+      "remaining_visual_gap": "Functional UI, not a 3D scene; photorealism is not claimed."
+    },
+    {
+      "section": "parent-dashboard",
+      "rendering": "native_2d_ui",
+      "verification_suites": [
+        "Hud34Check",
+        "Parent36Check"
+      ],
+      "photorealism_complete": false,
+      "remaining_visual_gap": "Functional UI, not a 3D scene; photorealism is not claimed."
+    },
+    {
+      "section": "parent-pin",
+      "rendering": "native_2d_ui",
+      "verification_suites": [
+        "Hud34Check",
+        "Parent36Check"
+      ],
+      "photorealism_complete": false,
+      "remaining_visual_gap": "Functional UI, not a 3D scene; photorealism is not claimed."
+    },
+    {
+      "section": "privacy",
+      "rendering": "native_2d_ui",
+      "verification_suites": [
+        "Hud34Check",
+        "Parent36Check"
+      ],
+      "photorealism_complete": false,
+      "remaining_visual_gap": "Functional UI, not a 3D scene; photorealism is not claimed."
+    },
+    {
+      "section": "settings",
+      "rendering": "native_2d_ui",
+      "verification_suites": [
+        "Hud34Check",
+        "Parent36Check"
+      ],
+      "photorealism_complete": false,
+      "remaining_visual_gap": "Functional UI, not a 3D scene; photorealism is not claimed."
+    },
+    {
+      "section": "clay",
+      "rendering": "native_3d_with_materials",
+      "verification_suites": [
+        "Creative36Check",
+        "Visual32Check"
+      ],
+      "photorealism_complete": false,
+      "remaining_visual_gap": "Photographic-style material detail and anatomical fish mesh; not a photorealistic full scene."
+    },
+    {
+      "section": "shapes",
+      "rendering": "native_3d_with_materials",
+      "verification_suites": [
+        "Creative36Check",
+        "Visual32Check"
+      ],
+      "photorealism_complete": false,
+      "remaining_visual_gap": "Photographic-style material detail and anatomical fish mesh; not a photorealistic full scene."
+    },
+    {
+      "section": "fish-pond",
+      "rendering": "native_3d_with_materials",
+      "verification_suites": [
+        "Creative36Check",
+        "Visual32Check"
+      ],
+      "photorealism_complete": false,
+      "remaining_visual_gap": "Photographic-style material detail and anatomical fish mesh; not a photorealistic full scene."
+    },
+    {
+      "section": "color-meadow",
+      "rendering": "mixed_3d_board_and_2d_art",
+      "verification_suites": [
+        "RenderCheck",
+        "Creative36Check"
+      ],
+      "photorealism_complete": false,
+      "remaining_visual_gap": "Line art, canvas input and illustrations remain 2D."
+    },
+    {
+      "section": "texture-garden",
+      "rendering": "mixed_3d_board_and_2d_art",
+      "verification_suites": [
+        "RenderCheck",
+        "Creative36Check"
+      ],
+      "photorealism_complete": false,
+      "remaining_visual_gap": "Line art, canvas input and illustrations remain 2D."
+    },
+    {
+      "section": "connect-dots",
+      "rendering": "mixed_3d_board_and_2d_art",
+      "verification_suites": [
+        "RenderCheck",
+        "Creative36Check"
+      ],
+      "photorealism_complete": false,
+      "remaining_visual_gap": "Line art, canvas input and illustrations remain 2D."
+    },
+    {
+      "section": "notebook",
+      "rendering": "mixed_3d_board_and_2d_art",
+      "verification_suites": [
+        "RenderCheck",
+        "Creative36Check"
+      ],
+      "photorealism_complete": false,
+      "remaining_visual_gap": "Line art, canvas input and illustrations remain 2D."
+    },
+    {
+      "section": "creations-gallery",
+      "rendering": "mixed_3d_board_and_2d_art",
+      "verification_suites": [
+        "RenderCheck",
+        "Creative36Check"
+      ],
+      "photorealism_complete": false,
+      "remaining_visual_gap": "Line art, canvas input and illustrations remain 2D."
+    },
+    {
+      "section": "story-shelf",
+      "rendering": "native_3d_dioramas_and_2d_backgrounds",
+      "verification_suites": [
+        "RenderCheck",
+        "Trail35Check"
+      ],
+      "photorealism_complete": false,
+      "remaining_visual_gap": "210 scripted episodes have not been converted into cinematic video films."
+    },
+    {
+      "section": "scripted-stories",
+      "rendering": "native_3d_dioramas_and_2d_backgrounds",
+      "verification_suites": [
+        "RenderCheck",
+        "Trail35Check"
+      ],
+      "photorealism_complete": false,
+      "remaining_visual_gap": "210 scripted episodes have not been converted into cinematic video films."
+    },
+    {
+      "section": "discovery-cinema",
+      "rendering": "bundled_interactive_video",
+      "verification_suites": [
+        "Cinema38Check"
+      ],
+      "photorealism_complete": false,
+      "remaining_visual_gap": "One factual Moon film, four distinct clips and two paths. Original animal-film generation was rejected by the connected service plan."
+    },
+    {
+      "section": "puzzle-count",
+      "rendering": "native_3d_props_and_2d_controls",
+      "verification_suites": [
+        "RenderCheck"
+      ],
+      "photorealism_complete": false,
+      "remaining_visual_gap": "Existing shared mechanic/geometry; not a bespoke photorealistic environment for each level."
+    },
+    {
+      "section": "puzzle-add",
+      "rendering": "native_3d_props_and_2d_controls",
+      "verification_suites": [
+        "RenderCheck"
+      ],
+      "photorealism_complete": false,
+      "remaining_visual_gap": "Existing shared mechanic/geometry; not a bespoke photorealistic environment for each level."
+    },
+    {
+      "section": "puzzle-subtract",
+      "rendering": "native_3d_props_and_2d_controls",
+      "verification_suites": [
+        "RenderCheck"
+      ],
+      "photorealism_complete": false,
+      "remaining_visual_gap": "Existing shared mechanic/geometry; not a bespoke photorealistic environment for each level."
+    },
+    {
+      "section": "puzzle-multiply",
+      "rendering": "native_3d_props_and_2d_controls",
+      "verification_suites": [
+        "RenderCheck"
+      ],
+      "photorealism_complete": false,
+      "remaining_visual_gap": "Existing shared mechanic/geometry; not a bespoke photorealistic environment for each level."
+    },
+    {
+      "section": "puzzle-divide",
+      "rendering": "native_3d_props_and_2d_controls",
+      "verification_suites": [
+        "RenderCheck"
+      ],
+      "photorealism_complete": false,
+      "remaining_visual_gap": "Existing shared mechanic/geometry; not a bespoke photorealistic environment for each level."
+    },
+    {
+      "section": "puzzle-shapes",
+      "rendering": "native_3d_props_and_2d_controls",
+      "verification_suites": [
+        "RenderCheck"
+      ],
+      "photorealism_complete": false,
+      "remaining_visual_gap": "Existing shared mechanic/geometry; not a bespoke photorealistic environment for each level."
+    },
+    {
+      "section": "puzzle-colors",
+      "rendering": "native_3d_props_and_2d_controls",
+      "verification_suites": [
+        "RenderCheck"
+      ],
+      "photorealism_complete": false,
+      "remaining_visual_gap": "Existing shared mechanic/geometry; not a bespoke photorealistic environment for each level."
+    },
+    {
+      "section": "puzzle-pattern",
+      "rendering": "native_3d_props_and_2d_controls",
+      "verification_suites": [
+        "RenderCheck"
+      ],
+      "photorealism_complete": false,
+      "remaining_visual_gap": "Existing shared mechanic/geometry; not a bespoke photorealistic environment for each level."
+    },
+    {
+      "section": "puzzle-memory",
+      "rendering": "native_3d_props_and_2d_controls",
+      "verification_suites": [
+        "RenderCheck"
+      ],
+      "photorealism_complete": false,
+      "remaining_visual_gap": "Existing shared mechanic/geometry; not a bespoke photorealistic environment for each level."
+    },
+    {
+      "section": "puzzle-sizes",
+      "rendering": "native_3d_props_and_2d_controls",
+      "verification_suites": [
+        "RenderCheck"
+      ],
+      "photorealism_complete": false,
+      "remaining_visual_gap": "Existing shared mechanic/geometry; not a bespoke photorealistic environment for each level."
+    },
+    {
+      "section": "puzzle-trace",
+      "rendering": "native_3d_props_and_2d_controls",
+      "verification_suites": [
+        "RenderCheck"
+      ],
+      "photorealism_complete": false,
+      "remaining_visual_gap": "Existing shared mechanic/geometry; not a bespoke photorealistic environment for each level."
+    },
+    {
+      "section": "puzzle-word",
+      "rendering": "native_3d_props_and_2d_controls",
+      "verification_suites": [
+        "RenderCheck"
+      ],
+      "photorealism_complete": false,
+      "remaining_visual_gap": "Existing shared mechanic/geometry; not a bespoke photorealistic environment for each level."
+    },
+    {
+      "section": "puzzle-maze",
+      "rendering": "native_3d_props_and_2d_controls",
+      "verification_suites": [
+        "RenderCheck"
+      ],
+      "photorealism_complete": false,
+      "remaining_visual_gap": "Existing shared mechanic/geometry; not a bespoke photorealistic environment for each level."
+    },
+    {
+      "section": "puzzle-robot",
+      "rendering": "native_3d_props_and_2d_controls",
+      "verification_suites": [
+        "RenderCheck"
+      ],
+      "photorealism_complete": false,
+      "remaining_visual_gap": "Existing shared mechanic/geometry; not a bespoke photorealistic environment for each level."
+    },
+    {
+      "section": "puzzle-water",
+      "rendering": "native_3d_props_and_2d_controls",
+      "verification_suites": [
+        "RenderCheck"
+      ],
+      "photorealism_complete": false,
+      "remaining_visual_gap": "Existing shared mechanic/geometry; not a bespoke photorealistic environment for each level."
+    },
+    {
+      "section": "puzzle-blocks",
+      "rendering": "native_3d_props_and_2d_controls",
+      "verification_suites": [
+        "RenderCheck"
+      ],
+      "photorealism_complete": false,
+      "remaining_visual_gap": "Existing shared mechanic/geometry; not a bespoke photorealistic environment for each level."
+    },
+    {
+      "section": "puzzle-merge",
+      "rendering": "native_3d_props_and_2d_controls",
+      "verification_suites": [
+        "RenderCheck"
+      ],
+      "photorealism_complete": false,
+      "remaining_visual_gap": "Existing shared mechanic/geometry; not a bespoke photorealistic environment for each level."
+    },
+    {
+      "section": "puzzle-rhythm",
+      "rendering": "native_3d_props_and_2d_controls",
+      "verification_suites": [
+        "RenderCheck"
+      ],
+      "photorealism_complete": false,
+      "remaining_visual_gap": "Existing shared mechanic/geometry; not a bespoke photorealistic environment for each level."
+    },
+    {
+      "section": "puzzle-bridge",
+      "rendering": "native_3d_props_and_2d_controls",
+      "verification_suites": [
+        "RenderCheck"
+      ],
+      "photorealism_complete": false,
+      "remaining_visual_gap": "Existing shared mechanic/geometry; not a bespoke photorealistic environment for each level."
+    },
+    {
+      "section": "puzzle-plan",
+      "rendering": "native_3d_props_and_2d_controls",
+      "verification_suites": [
+        "RenderCheck"
+      ],
+      "photorealism_complete": false,
+      "remaining_visual_gap": "Existing shared mechanic/geometry; not a bespoke photorealistic environment for each level."
+    },
+    {
+      "section": "number-guardians",
+      "rendering": "native_3d_learning_scene",
+      "verification_suites": [
+        "QuestCheck"
+      ],
+      "photorealism_complete": false,
+      "remaining_visual_gap": "Stylized learning props and characters remain."
+    },
+    {
+      "section": "balance-workshop",
+      "rendering": "native_3d_learning_scene",
+      "verification_suites": [
+        "QuestCheck"
+      ],
+      "photorealism_complete": false,
+      "remaining_visual_gap": "Stylized learning props and characters remain."
+    },
+    {
+      "section": "robot-routes",
+      "rendering": "native_3d_learning_scene",
+      "verification_suites": [
+        "QuestCheck"
+      ],
+      "photorealism_complete": false,
+      "remaining_visual_gap": "Stylized learning props and characters remain."
+    },
+    {
+      "section": "discovery-trail",
+      "rendering": "native_3d_studio",
+      "verification_suites": [
+        "StudioCheck",
+        "PlayroomCheck"
+      ],
+      "photorealism_complete": false,
+      "remaining_visual_gap": "Stylized props/characters remain; native gesture and save behavior tested separately."
+    },
+    {
+      "section": "letter-adventures",
+      "rendering": "native_3d_studio",
+      "verification_suites": [
+        "StudioCheck",
+        "PlayroomCheck"
+      ],
+      "photorealism_complete": false,
+      "remaining_visual_gap": "Stylized props/characters remain; native gesture and save behavior tested separately."
+    },
+    {
+      "section": "learning-islands",
+      "rendering": "native_3d_studio",
+      "verification_suites": [
+        "StudioCheck",
+        "PlayroomCheck"
+      ],
+      "photorealism_complete": false,
+      "remaining_visual_gap": "Stylized props/characters remain; native gesture and save behavior tested separately."
+    },
+    {
+      "section": "little-makers-friends",
+      "rendering": "native_3d_studio",
+      "verification_suites": [
+        "StudioCheck",
+        "PlayroomCheck"
+      ],
+      "photorealism_complete": false,
+      "remaining_visual_gap": "Stylized props/characters remain; native gesture and save behavior tested separately."
+    },
+    {
+      "section": "shape-builders",
+      "rendering": "native_3d_studio",
+      "verification_suites": [
+        "StudioCheck",
+        "PlayroomCheck"
+      ],
+      "photorealism_complete": false,
+      "remaining_visual_gap": "Stylized props/characters remain; native gesture and save behavior tested separately."
+    },
+    {
+      "section": "maker-world",
+      "rendering": "native_3d_studio",
+      "verification_suites": [
+        "StudioCheck",
+        "PlayroomCheck"
+      ],
+      "photorealism_complete": false,
+      "remaining_visual_gap": "Stylized props/characters remain; native gesture and save behavior tested separately."
+    },
+    {
+      "section": "school-maths",
+      "rendering": "native_3d_foreground_2d_backdrop",
+      "verification_suites": [
+        "Trail35Check",
+        "Readability36Check"
+      ],
+      "photorealism_complete": false,
+      "remaining_visual_gap": "264 starter entries use three shared worlds; scenery/companions are not fully photorealistic."
+    },
+    {
+      "section": "school-words",
+      "rendering": "native_3d_foreground_2d_backdrop",
+      "verification_suites": [
+        "Trail35Check",
+        "Readability36Check"
+      ],
+      "photorealism_complete": false,
+      "remaining_visual_gap": "264 starter entries use three shared worlds; scenery/companions are not fully photorealistic."
+    },
+    {
+      "section": "school-science",
+      "rendering": "native_3d_foreground_2d_backdrop",
+      "verification_suites": [
+        "Trail35Check",
+        "Readability36Check"
+      ],
+      "photorealism_complete": false,
+      "remaining_visual_gap": "264 starter entries use three shared worlds; scenery/companions are not fully photorealistic."
+    }
+  ]
+}
