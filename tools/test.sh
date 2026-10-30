@@ -42,3 +42,6 @@ python3 "$project_root/tests/check_studios.py"
 python3 "$project_root/tests/check_cinema.py"
 "$java_root/bin/javac" -d "$project_root/build/tests" "$project_root/app/src/main/java/com/littlemakers/village/nativeapp/FishGeometry.java" "$project_root/app/src/main/java/com/littlemakers/village/nativeapp/SurfaceNormals.java" "$project_root/tests/VisualGeometry38Test.java"
 "$java_root/bin/java" -cp "$project_root/build/tests" com.littlemakers.village.nativeapp.VisualGeometry38Test
+
+"$java_root/bin/javac" -d "$project_root/build/tests" "$project_root/app/src/main/java/com/littlemakers/village/nativeapp/StoryTheaterState.java" "$project_root/app/src/main/java/com/littlemakers/village/nativeapp/StoryLens.java" "$project_root/app/src/main/java/com/littlemakers/village/nativeapp/WildlifeGeometry.java" "$project_root/tests/StoryTheaterTest.java"
+"$java_root/bin/java" -cp "$project_root/build/tests" com.littlemakers.village.nativeapp.StoryTheaterTest

@@ -9,5 +9,6 @@
   <activity android:name="com.littlemakers.village.nativeapp.MainActivity" android:exported="false" />
   <activity android:name="com.littlemakers.village.nativeapp.SchoolTrailActivity" android:exported="false" />
   <activity android:name="com.littlemakers.village.nativeapp.CinemaActivity" android:exported="false" />
+  <activity android:name="com.littlemakers.village.nativeapp.StoryTheaterActivity" android:exported="false" />
  </application>
 </manifest>

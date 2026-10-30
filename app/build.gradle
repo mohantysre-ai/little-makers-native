@@ -6,7 +6,7 @@ android {
  compileSdk 36
  buildToolsVersion '36.0.0'
  androidResources { noCompress += ['mp4'] }
- defaultConfig { applicationId 'com.littlemakers.village'; minSdk 24; targetSdk 36; versionCode 36; versionName '3.8.0-native' }
+ defaultConfig { applicationId 'com.littlemakers.village'; minSdk 24; targetSdk 36; versionCode 37; versionName '3.9.0-native' }
  compileOptions { sourceCompatibility JavaVersion.VERSION_1_8; targetCompatibility JavaVersion.VERSION_1_8 }
  signingConfigs {
   if (signingReady) {
