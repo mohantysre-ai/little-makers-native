@@ -1,3 +1,7 @@
+# Little Makers 3.8.0 — cinema and textured 3D (validation in progress)
+
+This working branch contains the new native offline branching-film player, four real lunar visualization clips in one film, original bundled material textures on six 3D renderers, reconstructed shared anatomical fish meshes and surface-derived clay normals. Device validation is in progress. This is not a completed whole-app photorealistic asset replacement.
+
 > **Publication status:** a saved 3.7.0 development APK is available, but its matching source push was interrupted. The app source in this branch remains 3.6.1. See [recovery record and recorded test scope](RECOVERY-3.7.0.md).
 
 # Little Makers 3.6.1: tested readability fixes

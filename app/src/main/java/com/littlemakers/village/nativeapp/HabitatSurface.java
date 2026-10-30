@@ -9,6 +9,8 @@ import javax.microedition.khronos.opengles.GL10;
 final class HabitatSurface extends GLSurfaceView implements GLSurfaceView.Renderer {
  interface Listener {void selected(int slot);void unavailable();}
  private final Listener listener;private final boolean reduced,dark,pond=true;private final HabitatState state;
+ private FishRenderer fish;private final float[]fishModel=new float[16];
+ private MaterialTexture materials;
  private Mesh sphere,box,cone,cylinder,boundMesh;private final float[]projection=new float[16],view=new float[16],model=new float[16],vp=new float[16],mvp=new float[16],normalMatrix=new float[9];
  private final int[]renderSlots=new int[9];private volatile float halfX=4,halfY=4;private int focused=-1,hovered=-1;private static final int[]FISH_COLORS={0xf1bc74,0xd9a4bb,0x9cc9a0};
  private int program,posAttr,normalAttr,mvpUniform,modelUniform,colorUniform,normalUniform,materialUniform,timeUniform,width=1,height=1;private long lastFrame;private float time;volatile long renderedFrames;
@@ -18,30 +20,27 @@ final class HabitatSurface extends GLSurfaceView implements GLSurfaceView.Render
  @Override public void onSurfaceCreated(GL10 gl,EGLConfig config){
   try{
    String vs="uniform mat4 uMvp;uniform mat4 uModel;uniform mat3 uNormal;attribute vec3 aPosition;attribute vec3 aNormal;varying vec3 vNormal;varying vec3 vPosition;void main(){vec4 world=uModel*vec4(aPosition,1.);vPosition=world.xyz;vNormal=normalize(uNormal*aNormal);gl_Position=uMvp*vec4(aPosition,1.);}";
-   String fs="precision mediump float;uniform vec3 uColor;uniform float uMaterial;uniform float uTime;varying vec3 vNormal;varying vec3 vPosition;void main(){vec3 n=normalize(vNormal);vec3 light=normalize(vec3(-.6,1.,.7));float diffuse=max(dot(n,light),0.);float shine=pow(max(dot(n,normalize(light+vec3(0.,.6,1.))),0.),32.);float grain=1.;if(uMaterial>1.5){grain=.93+.07*sin(vPosition.y*73.+sin(vPosition.x*3.)*2.);}else if(uMaterial>.5){grain=.92+.08*sin(vPosition.x*5.+uTime*.5)*sin(vPosition.y*7.-uTime*.35);}vec3 c=uColor*grain*(.5+.5*diffuse)+vec3(.28)*shine;gl_FragColor=vec4(c,1.);}";
+   String fs=MaterialTexture.fragment(false);
    program=GLES20.glCreateProgram();int vertex=shader(GLES20.GL_VERTEX_SHADER,vs),fragment=shader(GLES20.GL_FRAGMENT_SHADER,fs);GLES20.glAttachShader(program,vertex);GLES20.glAttachShader(program,fragment);GLES20.glLinkProgram(program);GLES20.glDeleteShader(vertex);GLES20.glDeleteShader(fragment);int[]linked={0};GLES20.glGetProgramiv(program,GLES20.GL_LINK_STATUS,linked,0);if(linked[0]==0)throw new IllegalStateException("Village program failed");
    posAttr=GLES20.glGetAttribLocation(program,"aPosition");normalAttr=GLES20.glGetAttribLocation(program,"aNormal");mvpUniform=GLES20.glGetUniformLocation(program,"uMvp");modelUniform=GLES20.glGetUniformLocation(program,"uModel");colorUniform=GLES20.glGetUniformLocation(program,"uColor");normalUniform=GLES20.glGetUniformLocation(program,"uNormal");
-   materialUniform=GLES20.glGetUniformLocation(program,"uMaterial");timeUniform=GLES20.glGetUniformLocation(program,"uTime");sphere=Mesh.sphere();box=Mesh.box();cone=Mesh.round(true);cylinder=Mesh.round(false);GLES20.glEnable(GLES20.GL_DEPTH_TEST);lastFrame=0;
+   materialUniform=GLES20.glGetUniformLocation(program,"uMaterial");timeUniform=GLES20.glGetUniformLocation(program,"uTime");fish=new FishRenderer();fish.create();materials=new MaterialTexture(getContext());materials.create(program);sphere=Mesh.sphere();box=Mesh.box();cone=Mesh.round(true);cylinder=Mesh.round(false);GLES20.glEnable(GLES20.GL_DEPTH_TEST);lastFrame=0;
   }catch(RuntimeException unsupported){program=0;post(listener::unavailable);}
  }
  @Override public void onSurfaceChanged(GL10 gl,int w,int h){width=w;height=h;GLES20.glViewport(0,0,w,h);float aspect=(float)w/Math.max(1,h);halfY=Math.max(3.6f,4/aspect);halfX=halfY*aspect;Matrix.orthoM(projection,0,-halfX,halfX,-halfY,halfY,.1f,40);}
  private void draw(Mesh mesh,float x,float y,float z,float sx,float sy,float sz,int color,float angle){
   Matrix.setIdentityM(model,0);Matrix.translateM(model,0,x,y,z);if(angle!=0)Matrix.rotateM(model,0,angle,0,0,1);Matrix.scaleM(model,0,sx,sy,sz);Matrix.multiplyMM(mvp,0,vp,0,model,0);
   for(int column=0;column<3;column++){float scale=column==0?sx:column==1?sy:sz;for(int row=0;row<3;row++)normalMatrix[column*3+row]=model[column*4+row]/(scale*scale);}GLES20.glUniformMatrix3fv(normalUniform,1,false,normalMatrix,0);GLES20.glUniformMatrix4fv(mvpUniform,1,false,mvp,0);GLES20.glUniformMatrix4fv(modelUniform,1,false,model,0);GLES20.glUniform3f(colorUniform,((color>>16)&255)/255f,((color>>8)&255)/255f,(color&255)/255f);
-  GLES20.glUniform1f(materialUniform,pond&&(color==0x204657||color==0x7fc6cc)?1:!pond&&(color==0x374b58||color==0xd7b58b)?2:0);if(boundMesh!=mesh){mesh.bind();GLES20.glVertexAttribPointer(posAttr,3,GLES20.GL_FLOAT,false,24,0);GLES20.glVertexAttribPointer(normalAttr,3,GLES20.GL_FLOAT,false,24,12);boundMesh=mesh;}GLES20.glDrawArrays(GLES20.GL_TRIANGLES,0,mesh.count);
+  GLES20.glUniform1f(materialUniform,pond&&(color==0x204657||color==0x7fc6cc)?1:MaterialTexture.kind(color));if(boundMesh!=mesh){mesh.bind();GLES20.glVertexAttribPointer(posAttr,3,GLES20.GL_FLOAT,false,24,0);GLES20.glVertexAttribPointer(normalAttr,3,GLES20.GL_FLOAT,false,24,12);boundMesh=mesh;}GLES20.glDrawArrays(GLES20.GL_TRIANGLES,0,mesh.count);
  }
  private void ball(float x,float y,float z,float r,int color){draw(sphere,x,y,z,r,r,r,color,0);}
 
- @Override public void onDrawFrame(GL10 gl){long now=android.os.SystemClock.uptimeMillis();float dt=lastFrame==0?0:Math.min(.05f,(now-lastFrame)/1000f);lastFrame=now;if(!reduced)time+=dt;GLES20.glClearColor(dark?.08f:.45f,dark?.18f:.73f,dark?.23f:.79f,1);GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT|GLES20.GL_DEPTH_BUFFER_BIT);if(program==0)return;GLES20.glUseProgram(program);GLES20.glUniform1f(timeUniform,time);GLES20.glEnableVertexAttribArray(posAttr);GLES20.glEnableVertexAttribArray(normalAttr);Matrix.setLookAtM(view,0,0,0,14,0,0,0,0,1,0);Matrix.multiplyMM(vp,0,projection,0,view,0);
+ @Override public void onDrawFrame(GL10 gl){long now=android.os.SystemClock.uptimeMillis();float dt=lastFrame==0?0:Math.min(.05f,(now-lastFrame)/1000f);lastFrame=now;if(!reduced)time+=dt;GLES20.glClearColor(dark?.08f:.45f,dark?.18f:.73f,dark?.23f:.79f,1);GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT|GLES20.GL_DEPTH_BUFFER_BIT);if(program==0)return;GLES20.glUseProgram(program);materials.bind();GLES20.glUniform1f(timeUniform,time);GLES20.glEnableVertexAttribArray(posAttr);GLES20.glEnableVertexAttribArray(normalAttr);Matrix.setLookAtM(view,0,0,0,14,0,0,0,0,1,0);Matrix.multiplyMM(vp,0,projection,0,view,0);
   draw(sphere,0,0,-1.3f,6,8,.4f,dark?0x204657:0x7fc6cc,0);draw(sphere,0,-3.8f,-.65f,5,1.4f,.1f,dark?0x65756b:0xe1d1a9,0);
   // Low sand banks replace the old tall columns. Only the selected spot needs a two-draw halo.
   for(int bank=0;bank<3;bank++)draw(sphere,(bank-1)*2.8f,-3.4f,-.8f,1.8f,.55f,.25f,dark?0x65756b:0xe1d1a9,bank*12);
   int selected;synchronized(state){System.arraycopy(state.slots,0,renderSlots,0,9);selected=state.selected;}for(int i=0;i<9;i++){float x=slotX(i),y=slotY(i);if(i==selected)draw(sphere,x,y-.28f,-.24f,.83f,.20f,.14f,0xf7dda0,0);draw(sphere,x,y-.28f,-.12f,.68f,.14f,.12f,0xabc5b2,0);int type=renderSlots[i];if(type>=0)decoration(type,x,y);}
   for(int i=0;i<3;i++){float phase=time*.35f+i*2.1f,x=(float)Math.sin(phase)*2.8f,y=2.5f+(float)Math.cos(phase)*.25f;float dir=Math.cos(phase)>=0?1:-1,wag=reduced?0:(float)Math.sin(time*6+i)*12;
-   draw(sphere,x,y,.15f,.57f,.20f,.14f,0x969d78,0);draw(sphere,x,y-.07f,.18f,.44f,.11f,.12f,0xd8d6bc,0);
-   for(int side=-1;side<=1;side+=2)draw(cone,x-dir*.66f,y+side*.09f,.15f,.20f,.14f,.025f,0x818a67,90+side*30+wag);
-   draw(cone,x-.05f,y+.21f,.16f,.23f,.12f,.025f,0x89906a,180);draw(sphere,x+dir*.15f,y-.1f,.29f,.15f,.035f,.025f,0xa9aa7f,wag);
-   draw(sphere,x+dir*.25f,y,.28f,.012f,.11f,.01f,0x6c775f,dir*12);ball(x+dir*.38f,y+.05f,.28f,.025f,0x263328);
+   Matrix.setIdentityM(fishModel,0);Matrix.translateM(fishModel,0,x,y,.25f);Matrix.scaleM(fishModel,0,dir*.85f,.85f,.85f);fish.draw(vp,fishModel,time+i,0x9b9e79,dark);boundMesh=null;GLES20.glUseProgram(program);materials.bind();GLES20.glEnableVertexAttribArray(posAttr);GLES20.glEnableVertexAttribArray(normalAttr);
   }
   for(int i=0;i<7;i++){float y=-3.5f+(time*.45f+i*1.1f)%7.5f;ball(-3.6f+(float)Math.sin(y)*.08f,y,.05f,.04f,0xd1e9dd);}GLES20.glBindBuffer(GLES20.GL_ARRAY_BUFFER,0);boundMesh=null;renderedFrames++;
  }

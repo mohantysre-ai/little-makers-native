@@ -18,10 +18,12 @@ final class VillageSurface extends GLSurfaceView implements GLSurfaceView.Render
  private final Listener listener;
  private final boolean reduced,dark;
  private final VillageSceneState state=new VillageSceneState();
+ private MaterialTexture materials;
  private Mesh sphere,box,cone,cylinder;private ForestBackdrop forest;
  private final float[] projection=new float[16],view=new float[16],model=new float[16],vp=new float[16],mvp=new float[16],normalMatrix=new float[9];
  private final float[] landmarkPoint=new float[4];
  private final float[] screenX=new float[5],screenY=new float[5],point=new float[4];
+ private int materialUniform,timeUniform;
  private int program,posAttr,normalAttr,mvpUniform,modelUniform,colorUniform,normalUniform,width,height;
  private long lastFrame;private float downX,downY,lastX;private boolean dragged,opening;private final int slop;
  private final Runnable openSelected;
@@ -36,16 +38,16 @@ final class VillageSurface extends GLSurfaceView implements GLSurfaceView.Render
  @Override public void onSurfaceCreated(GL10 gl,EGLConfig config){
   try{
    String vs="uniform mat4 uMvp;uniform mat4 uModel;uniform mat3 uNormal;attribute vec3 aPosition;attribute vec3 aNormal;varying vec3 vNormal;varying vec3 vPosition;void main(){vec4 world=uModel*vec4(aPosition,1.);vPosition=world.xyz;vNormal=normalize(uNormal*aNormal);gl_Position=uMvp*vec4(aPosition,1.);}";
-   String fs="precision mediump float;uniform vec3 uColor;varying vec3 vNormal;varying vec3 vPosition;void main(){vec3 n=normalize(vNormal);vec3 light=normalize(vec3(-.6,1.,.7));float diffuse=max(dot(n,light),0.);float shine=pow(max(dot(n,normalize(light+vec3(0.,.6,1.))),0.),32.);vec3 c=uColor*(.65+.35*diffuse)+vec3(.22)*shine;gl_FragColor=vec4(c,1.);}";
+   String fs=MaterialTexture.fragment(false);
    program=GLES20.glCreateProgram();int vertex=shader(GLES20.GL_VERTEX_SHADER,vs),fragment=shader(GLES20.GL_FRAGMENT_SHADER,fs);GLES20.glAttachShader(program,vertex);GLES20.glAttachShader(program,fragment);GLES20.glLinkProgram(program);GLES20.glDeleteShader(vertex);GLES20.glDeleteShader(fragment);int[]linked={0};GLES20.glGetProgramiv(program,GLES20.GL_LINK_STATUS,linked,0);if(linked[0]==0)throw new IllegalStateException("Village program failed");
    posAttr=GLES20.glGetAttribLocation(program,"aPosition");normalAttr=GLES20.glGetAttribLocation(program,"aNormal");mvpUniform=GLES20.glGetUniformLocation(program,"uMvp");modelUniform=GLES20.glGetUniformLocation(program,"uModel");colorUniform=GLES20.glGetUniformLocation(program,"uColor");normalUniform=GLES20.glGetUniformLocation(program,"uNormal");
-   sphere=Mesh.sphere();box=Mesh.box();cone=Mesh.round(true);cylinder=Mesh.round(false);forest=new ForestBackdrop(getContext());forest.create();GLES20.glEnable(GLES20.GL_DEPTH_TEST);lastFrame=0;
+   materialUniform=GLES20.glGetUniformLocation(program,"uMaterial");timeUniform=GLES20.glGetUniformLocation(program,"uTime");materials=new MaterialTexture(getContext());materials.create(program);sphere=Mesh.sphere();box=Mesh.box();cone=Mesh.round(true);cylinder=Mesh.round(false);forest=new ForestBackdrop(getContext());forest.create();GLES20.glEnable(GLES20.GL_DEPTH_TEST);lastFrame=0;
   }catch(RuntimeException unsupported){program=0;post(listener::unavailable);}
  }
  @Override public void onSurfaceChanged(GL10 gl,int w,int h){width=w;height=h;GLES20.glViewport(0,0,w,h);Matrix.perspectiveM(projection,0,43,(float)w/Math.max(1,h),.1f,60);}
  private void draw(Mesh mesh,float x,float y,float z,float sx,float sy,float sz,int color,float angle){
   Matrix.setIdentityM(model,0);Matrix.translateM(model,0,x,y,z);if(angle!=0)Matrix.rotateM(model,0,angle,0,1,0);Matrix.scaleM(model,0,sx,sy,sz);Matrix.multiplyMM(mvp,0,vp,0,model,0);
-  for(int column=0;column<3;column++){float scale=column==0?sx:column==1?sy:sz;for(int row=0;row<3;row++)normalMatrix[column*3+row]=model[column*4+row]/(scale*scale);}GLES20.glUniformMatrix3fv(normalUniform,1,false,normalMatrix,0);GLES20.glUniformMatrix4fv(mvpUniform,1,false,mvp,0);GLES20.glUniformMatrix4fv(modelUniform,1,false,model,0);GLES20.glUniform3f(colorUniform,((color>>16)&255)/255f,((color>>8)&255)/255f,(color&255)/255f);
+  for(int column=0;column<3;column++){float scale=column==0?sx:column==1?sy:sz;for(int row=0;row<3;row++)normalMatrix[column*3+row]=model[column*4+row]/(scale*scale);}GLES20.glUniformMatrix3fv(normalUniform,1,false,normalMatrix,0);GLES20.glUniformMatrix4fv(mvpUniform,1,false,mvp,0);GLES20.glUniformMatrix4fv(modelUniform,1,false,model,0);GLES20.glUniform3f(colorUniform,((color>>16)&255)/255f,((color>>8)&255)/255f,(color&255)/255f);GLES20.glUniform1f(materialUniform,MaterialTexture.kind(color));GLES20.glUniform1f(timeUniform,state.seconds);
   mesh.data.position(0);GLES20.glVertexAttribPointer(posAttr,3,GLES20.GL_FLOAT,false,24,mesh.data);mesh.data.position(3);GLES20.glVertexAttribPointer(normalAttr,3,GLES20.GL_FLOAT,false,24,mesh.data);GLES20.glDrawArrays(GLES20.GL_TRIANGLES,0,mesh.count);
  }
  private void ball(float x,float y,float z,float r,int color){draw(sphere,x,y,z,r,r,r,color,0);}
@@ -53,7 +55,7 @@ final class VillageSurface extends GLSurfaceView implements GLSurfaceView.Render
  @Override public void onDrawFrame(GL10 gl){
   long now=android.os.SystemClock.uptimeMillis();synchronized(state){state.advance(lastFrame==0?0:(now-lastFrame)/1000f,reduced);}lastFrame=now;
   GLES20.glClearColor(dark?.09f:.78f,dark?.12f:.9f,dark?.22f:.96f,1);GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT|GLES20.GL_DEPTH_BUFFER_BIT);if(program==0)return;
-  if(forest!=null)forest.draw(width,height,state.yaw,dark);GLES20.glUseProgram(program);GLES20.glEnableVertexAttribArray(posAttr);GLES20.glEnableVertexAttribArray(normalAttr);float t=state.seconds;double yaw=Math.toRadians(state.yaw);Matrix.setLookAtM(view,0,(float)Math.sin(yaw)*11,9,(float)Math.cos(yaw)*11,0,.1f,0,0,1,0);Matrix.multiplyMM(vp,0,projection,0,view,0);
+  if(forest!=null)forest.draw(width,height,state.yaw,dark);GLES20.glUseProgram(program);materials.bind();GLES20.glEnableVertexAttribArray(posAttr);GLES20.glEnableVertexAttribArray(normalAttr);float t=state.seconds;double yaw=Math.toRadians(state.yaw);Matrix.setLookAtM(view,0,(float)Math.sin(yaw)*11,9,(float)Math.cos(yaw)*11,0,.1f,0,0,1,0);Matrix.multiplyMM(vp,0,projection,0,view,0);
   draw(sphere,0,-1.0f,0,6.4f,.55f,4.8f,0x74c8db,0);draw(sphere,0,-.7f,0,5.9f,.58f,4.25f,0x9fca8d,0);draw(sphere,0,-.8f,0,5.6f,.35f,4.15f,0x78a984,0);
   for(int i=0;i<10;i++){float x=-3.5f+i*.78f;draw(box,x,-.14f,1.35f,.47f,.03f,.25f,0xf2dca9,12);}
   for(int i=0;i<5;i++){

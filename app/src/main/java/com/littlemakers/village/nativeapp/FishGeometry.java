@@ -1,0 +1,13 @@
+package com.littlemakers.village.nativeapp;
+import java.util.ArrayList;
+/** Original lofted fish body, forked tail, anatomical fins and paired lateral eyes. */
+final class FishGeometry {
+ private final ArrayList<Float>data=new ArrayList<>();
+ private static final float[][]R={{-.73f,.035f,.028f},{-.59f,.075f,.055f},{-.43f,.15f,.10f},{-.20f,.23f,.155f},{.06f,.265f,.18f},{.30f,.23f,.17f},{.51f,.16f,.13f},{.65f,.07f,.075f},{.69f,.012f,.025f}};
+ private void vertex(float x,float y,float z,float nx,float ny,float nz,float type){float n=(float)Math.sqrt(nx*nx+ny*ny+nz*nz);for(float v:new float[]{x,y,z,nx/n,ny/n,nz/n,type})data.add(v);}
+ private void body(int r,int s){float[]p=R[r];double a=s*Math.PI*2/24;float cy=(float)Math.cos(a),sz=(float)Math.sin(a);int lo=Math.max(0,r-1),hi=Math.min(R.length-1,r+1);float slope=(R[hi][1]-R[lo][1])/(R[hi][0]-R[lo][0]);vertex(p[0],p[1]*cy,p[2]*sz,-slope,cy,sz*p[1]/p[2],0);}
+ private void fin(float[]a,float[]b,float[]c){float ux=b[0]-a[0],uy=b[1]-a[1],uz=b[2]-a[2],vx=c[0]-a[0],vy=c[1]-a[1],vz=c[2]-a[2];float nx=uy*vz-uz*vy,ny=uz*vx-ux*vz,nz=ux*vy-uy*vx;for(int side:new int[]{1,-1})for(float[]p:new float[][]{a,b,c})vertex(p[0],p[1],p[2],nx*side,ny*side,nz*side,1);}
+ private void eye(float cx,float cy,float cz,float radius,float type){for(int a=0;a<6;a++)for(int b=0;b<10;b++)for(int k:new int[]{0,1,2,0,2,3}){double lat=Math.PI*(a+(k==1||k==2?1:0))/6,lon=Math.PI*2*(b+(k>=2?1:0))/10;float x=(float)(Math.sin(lat)*Math.cos(lon)),y=(float)Math.cos(lat),z=(float)(Math.sin(lat)*Math.sin(lon));vertex(cx+x*radius,cy+y*radius,cz+z*radius,x,y,z,type);}}
+ static float[]build(){FishGeometry g=new FishGeometry();for(int i=0;i<R.length-1;i++)for(int s=0;s<24;s++)for(int k:new int[]{0,1,2,0,2,3})g.body(i+(k==1||k==2?1:0),s+(k>=2?1:0));for(int end:new int[]{0,R.length-1})for(int s=0;s<24;s++){g.vertex(R[end][0],0,0,end==0?-1:1,0,0,0);g.body(end,s);g.body(end,s+1);}g.fin(new float[]{-.72f,0,0},new float[]{-1.04f,.33f,0},new float[]{-.91f,.025f,.015f});g.fin(new float[]{-.72f,0,0},new float[]{-.91f,-.025f,.015f},new float[]{-1.04f,-.33f,0});g.fin(new float[]{-.44f,.15f,0},new float[]{-.22f,.46f,.012f},new float[]{.26f,.23f,0});g.fin(new float[]{-.39f,-.16f,0},new float[]{-.37f,-.34f,0},new float[]{-.04f,-.25f,.01f});for(int side:new int[]{-1,1}){g.fin(new float[]{.24f,-.03f,side*.16f},new float[]{-.11f,-.24f,side*.32f},new float[]{-.02f,-.08f,side*.20f});g.eye(.48f,.065f,side*.12f,.035f,2);g.eye(.485f,.075f,side*.145f,.010f,3);}float[]out=new float[g.data.size()];for(int i=0;i<out.length;i++)out[i]=g.data.get(i);return out;}
+ static float bend(float x,float time){float t=Math.max(0,-x+.12f);return(float)Math.sin(time*6+x*4)*t*t*.16f;}
+}

@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "id": "physical_atlas",
+  "file": "physical_atlas.webp",
+  "width": 1024,
+  "height": 1024,
+  "sha256": "94451c8f0d0d5103be133b1717ffd5986af83e0a9366bdbb3583f4a1b5b8551c",
+  "origin": "Original generated material texture artwork; OpenAI image generation. Not a photograph captured by a camera.",
+  "quadrants": [
+    "maple wood",
+    "stone",
+    "sculpting clay",
+    "fine sand"
+  ],
+  "purpose": "Bundled albedo microtexture, tinted by the native renderer. Does not make all underlying character geometry photorealistic."
+}

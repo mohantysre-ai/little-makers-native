@@ -1,0 +1,61 @@
+{
+  "schema": 1,
+  "film_count": 1,
+  "distinct_clips": 4,
+  "source": {
+    "id": "nasa_svs_4619",
+    "title": "Tour of the Moon 4K Redux, title-free visualization",
+    "page": "https://svs.gsfc.nasa.gov/4619/",
+    "download": "https://svs.gsfc.nasa.gov/vis/a000000/a004600/a004619/moontour_notitle_720p30.webm",
+    "usage_guidelines": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+    "credit": "NASA\u2019s Scientific Visualization Studio; visualization by Ernie Wright, produced/edited by David Ladd; LRO data.",
+    "edits": "Short excerpts, rescaled/transcoded H.264, soundtrack excluded. No NASA logo or identifiable person included. Used for factual education; no endorsement implied.",
+    "media_type": "Scientific 3D visualization from lunar data, not live camera footage or AI-generated wildlife."
+  },
+  "clips": [
+    {
+      "id": "moon_arrival",
+      "resource": "res/raw/moon_arrival.mp4",
+      "poster": "res/drawable-nodpi/moon_arrival.webp",
+      "source_id": "nasa_svs_4619",
+      "source_start_seconds": 14.5,
+      "duration_seconds": 8,
+      "audio_removed": true,
+      "sha256": "b0212b360c92d560845d6e9fb69197d0609ea306b1638a0f5fd7a6f0bec9cb5b",
+      "bytes": 2109048
+    },
+    {
+      "id": "moon_crater",
+      "resource": "res/raw/moon_crater.mp4",
+      "poster": "res/drawable-nodpi/moon_crater.webp",
+      "source_id": "nasa_svs_4619",
+      "source_start_seconds": 124,
+      "duration_seconds": 8,
+      "audio_removed": true,
+      "sha256": "449c1c40e35e8d2a57891f98a3f39f57c2dc1bd3c669f4823f3c6e38263b2da7",
+      "bytes": 1939130
+    },
+    {
+      "id": "moon_sunlight",
+      "resource": "res/raw/moon_sunlight.mp4",
+      "poster": "res/drawable-nodpi/moon_sunlight.webp",
+      "source_id": "nasa_svs_4619",
+      "source_start_seconds": 44,
+      "duration_seconds": 8,
+      "audio_removed": true,
+      "sha256": "ba519c695189677c0f86ff5c87ba95a72b7848d03bf851ca4ffa3e0d03516cea",
+      "bytes": 2181317
+    },
+    {
+      "id": "moon_departure",
+      "resource": "res/raw/moon_departure.mp4",
+      "poster": "res/drawable-nodpi/moon_departure.webp",
+      "source_id": "nasa_svs_4619",
+      "source_start_seconds": 270,
+      "duration_seconds": 8,
+      "audio_removed": true,
+      "sha256": "ae3a54639824b1f6e5f09c34552cb1cf5d6a081e93df8049982bce4328cd6d46",
+      "bytes": 469725
+    }
+  ]
+}
